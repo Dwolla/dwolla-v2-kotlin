@@ -5,30 +5,48 @@ Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for 
 Please note this library is currently a **PREVIEW**:
 
 - A small subset of APIs are currently implemented ([Customers](https://docs.dwolla.com/#customers),
-[Business Classifications](https://docs.dwolla.com/#list-business-classifications) and
-[Documents](https://docs.dwolla.com/#documents)).
+[Business Classifications](https://docs.dwolla.com/#list-business-classifications),
+[Documents](https://docs.dwolla.com/#documents) and [Root](https://docs.dwolla.com/#root)).
 - Breaking changes could be introduced as we gather your [feedback](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Installation
 
 #### Maven
 
-Add this dependency to your project's POM:
+Add this to your project's POM:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
 ```xml
 <dependency>
-  <groupId>com.dwolla</groupId>
-  <artifactId>dwolla-v2-kotlin</artifactId>
-  <version>0.0.1-pre1</version>
+    <groupId>com.github.dwolla</groupId>
+    <artifactId>dwolla-v2-kotlin</artifactId>
+    <version>v0.0.1-pre.1</version>
 </dependency>
 ```
 
 #### Gradle
 
-Add this dependency to your project's build file:
+Add this to your project's build file:
 
 ```groovy
-compile "com.dwolla:dwolla-v2-kotlin:0.0.1-pre1"
+repositories {
+    // ...
+    maven { url 'https://jitpack.io' }
+}
+```
+
+```groovy
+dependencies {
+    implementation 'com.github.dwolla:dwolla-v2-kotlin:v0.0.1-pre.1'
+}
 ```
 
 ## Getting Started
@@ -38,8 +56,8 @@ First, let's set up a Dwolla client using our application key and secret.
 ###### Kotlin
 
 ```kotlin
-import dwollav2.Client
-import dwollav2.Environment
+import dwolla.Client
+import dwolla.Environment
 
 val dwolla = Client(
     key = "yourClientKey",       // see dashboard.dwolla.com
@@ -51,8 +69,8 @@ val dwolla = Client(
 ###### Java
 
 ```java
-import dwollav2.Client;
-import dwollav2.Environment;
+import dwolla.Client;
+import dwolla.Environment;
 
 Client dwolla = new Client(
     "yourClientKey",    // see dashboard.dwolla.com
