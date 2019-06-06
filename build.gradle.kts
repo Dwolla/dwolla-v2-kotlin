@@ -1,6 +1,11 @@
+group = "com.dwolla"
+version = "0.0"
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     id("org.jetbrains.kotlin.jvm").version("1.3.21")
+    id("java-library")
+    id("maven-publish")
 }
 
 repositories {
@@ -31,4 +36,19 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("io.mockk:mockk:1.9.3")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("dwolla-v2-kotlin") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "dwolla-v2-kotlin"
+            url = uri("file://${buildDir}/repo")
+        }
+    }
 }
