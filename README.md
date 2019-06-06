@@ -26,9 +26,9 @@ Add this to your project's POM:
 
 ```xml
 <dependency>
-    <groupId>com.github.dwolla</groupId>
+    <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>v0.0.1-pre.1</version>
+    <version>master-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -45,7 +45,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation 'com.github.dwolla:dwolla-v2-kotlin:v0.0.1-pre.1'
+    implementation 'com.github.Dwolla:dwolla-v2-kotlin:master-SNAPSHOT'
 }
 ```
 
