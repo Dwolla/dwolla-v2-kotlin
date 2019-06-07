@@ -49,7 +49,7 @@ publishing {
     repositories {
         maven {
             name = "dwolla-v2-kotlin"
-            url = uri("file://${buildDir}/repo")
+            url = uri("file://$buildDir/repo")
         }
     }
 }

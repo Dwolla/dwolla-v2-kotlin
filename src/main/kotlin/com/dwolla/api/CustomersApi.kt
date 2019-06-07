@@ -149,24 +149,24 @@ class CustomersApi(private val client: Client) {
 
     @Throws(DwollaException::class, OAuthException::class)
     fun createVerifiedBusiness(
-            firstName: String,
-            lastName: String,
-            email: String,
-            address1: String,
-            address2: String? = null,
-            city: String,
-            state: String,
-            postalCode: String,
-            businessName: String,
-            businessType: CustomerBusinessType,
-            businessClassification: String,
-            ein: String,
-            controller: CustomerController,
-            website: String? = null,
-            phone: String? = null,
-            doingBusinessAs: String? = null,
-            ipAddress: String? = null,
-            idempotencyKey: String? = null
+        firstName: String,
+        lastName: String,
+        email: String,
+        address1: String,
+        address2: String? = null,
+        city: String,
+        state: String,
+        postalCode: String,
+        businessName: String,
+        businessType: CustomerBusinessType,
+        businessClassification: String,
+        ein: String,
+        controller: CustomerController,
+        website: String? = null,
+        phone: String? = null,
+        doingBusinessAs: String? = null,
+        ipAddress: String? = null,
+        idempotencyKey: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
