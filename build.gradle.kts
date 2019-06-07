@@ -1,5 +1,5 @@
 group = "com.dwolla"
-version = "0.0"
+version = "0.1.0-SNAPSHOT"
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
