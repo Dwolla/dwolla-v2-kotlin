@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm").version("1.3.21")
     id("java-library")
     id("maven-publish")
+    id("org.jlleitschuh.gradle.ktlint").version("8.0.0")
 }
 
 repositories {

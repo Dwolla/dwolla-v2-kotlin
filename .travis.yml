@@ -9,6 +9,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - ./gradlew ktlintCheck
   - ./gradlew test
 
 before_cache:
