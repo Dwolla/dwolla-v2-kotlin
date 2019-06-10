@@ -39,13 +39,15 @@ Add this to your project's build file:
 ```groovy
 repositories {
     // ...
-    maven { url 'https://jitpack.io' }
+    maven(url = "https://jitpack.io") {
+        name = "jitpack"
+    }
 }
 ```
 
 ```groovy
 dependencies {
-    implementation 'com.github.Dwolla:dwolla-v2-kotlin:master-SNAPSHOT'
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:master-SNAPSHOT")
 }
 ```
 
@@ -56,8 +58,8 @@ First, let's set up a Dwolla client using our application key and secret.
 ###### Kotlin
 
 ```kotlin
-import dwolla.Client
-import dwolla.Environment
+import com.dwolla.Client
+import com.dwolla.Environment
 
 val dwolla = Client(
     key = "yourClientKey",       // see dashboard.dwolla.com
@@ -69,8 +71,8 @@ val dwolla = Client(
 ###### Java
 
 ```java
-import dwolla.Client;
-import dwolla.Environment;
+import com.dwolla.Client;
+import com.dwolla.Environment;
 
 Client dwolla = new Client(
     "yourClientKey",    // see dashboard.dwolla.com
