@@ -176,6 +176,7 @@ class Client(
     internal fun fetchToken(): Token {
         val result = fuelManager
             .post(environment.tokenUrl, listOf("grant_type" to "client_credentials"))
+            .header(USER_AGENT_HEADER)
             .authentication()
             .basic(key, secret)
             .responseObject(Deserializer(gson, ClientCredentialsResponse::class.java))
