@@ -4,9 +4,31 @@ Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for 
 
 Please note this library is currently a **PREVIEW**:
 
-- A small subset of APIs are currently implemented ([Customers](https://docs.dwolla.com/#customers),
-[Business Classifications](https://docs.dwolla.com/#list-business-classifications),
-[Documents](https://docs.dwolla.com/#documents) and [Root](https://docs.dwolla.com/#root)).
+- A small subset of APIs are currently implemented:
+  - [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
+    - `getById`
+    - `list`
+    - `createReceiveOnly`
+    - `createUnverified`
+    - `createVerifiedPersonal`
+    - `createVerifiedSoleProp`
+    - `createVerifiedBusiness`
+    - `updateUnverified`
+    - `updateVerified`
+    - `updateVerifiedBusiness`
+    - `upgradeToVerifiedPersonal`
+    - `suspend`
+    - `deactivate`
+    - `reactivate`
+    - `retryVerified`
+  - [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
+    - `list`
+  - [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
+    - `createForCustomer`
+    - `getById`
+    - `listByCustomer`
+  - [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt).
+    - `get`
 - Breaking changes could be introduced as we gather your [feedback](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Installation
