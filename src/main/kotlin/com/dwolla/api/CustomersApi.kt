@@ -1,6 +1,6 @@
 package com.dwolla.api
 
-import com.dwolla.Client
+import com.dwolla.Dwolla
 import com.dwolla.api.customers.CustomerBusinessType
 import com.dwolla.api.customers.CustomerController
 import com.dwolla.api.customers.CustomerStatus
@@ -11,17 +11,19 @@ import com.dwolla.http.JsonBody
 import com.dwolla.http.Query
 import com.dwolla.resource.customers.Customer
 import com.dwolla.resource.customers.Customers
+import com.dwolla.util.Headers.Companion.IDEMPOTENCY_KEY
+import com.dwolla.util.Paths.Companion.CUSTOMERS
 
-class CustomersApi(private val client: Client) {
+class CustomersApi(private val dwolla: Dwolla) {
 
     @Throws(DwollaException::class, OAuthException::class)
-    fun getById(id: String): Customer {
-        return client.get(Customer::class.java, customerUrl(id)).body
+    fun get(id: String): Customer {
+        return dwolla.get(Customer::class.java, customerUrl(id)).body
     }
 
     @Throws(DwollaException::class, OAuthException::class)
     fun list(limit: Long? = null, offset: Long? = null, search: String? = null, status: CustomerStatus? = null): Customers {
-        return client.get(Customers::class.java, "customers", Query(
+        return dwolla.get(Customers::class.java, CUSTOMERS, Query(
                 "limit" to limit,
                 "offset" to offset,
                 "search" to search,
@@ -38,7 +40,6 @@ class CustomersApi(private val client: Client) {
         ipAddress: String? = null,
         idempotencyKey: String? = null
     ): Customer {
-
         return createCustomer(JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
@@ -58,7 +59,6 @@ class CustomersApi(private val client: Client) {
         ipAddress: String? = null,
         idempotencyKey: String? = null
     ): Customer {
-
         return createCustomer(JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
@@ -84,7 +84,6 @@ class CustomersApi(private val client: Client) {
         ipAddress: String? = null,
         idempotencyKey: String? = null
     ): Customer {
-
         return createCustomer(JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
@@ -123,7 +122,6 @@ class CustomersApi(private val client: Client) {
         ipAddress: String? = null,
         idempotencyKey: String? = null
     ): Customer {
-
         return createCustomer(JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
@@ -168,7 +166,6 @@ class CustomersApi(private val client: Client) {
         ipAddress: String? = null,
         idempotencyKey: String? = null
     ): Customer {
-
         return createCustomer(JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
@@ -216,8 +213,7 @@ class CustomersApi(private val client: Client) {
         email: String? = null,
         businessName: String? = null
     ): Customer {
-
-        return client.post(Customer::class.java, customerUrl(id), JsonBody(
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
                 "email" to email,
@@ -237,8 +233,7 @@ class CustomersApi(private val client: Client) {
         postalCode: String? = null,
         phone: String? = null
     ): Customer {
-
-        return client.post(Customer::class.java, customerUrl(id), JsonBody(
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody(
                 "email" to email,
                 "ipAddress" to ipAddress,
                 "address1" to address1,
@@ -264,8 +259,7 @@ class CustomersApi(private val client: Client) {
         doingBusinessAs: String? = null,
         website: String? = null
     ): Customer {
-
-        return client.post(Customer::class.java, customerUrl(id), JsonBody(
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody(
                 "email" to email,
                 "ipAddress" to ipAddress,
                 "address1" to address1,
@@ -290,8 +284,7 @@ class CustomersApi(private val client: Client) {
         phone: String? = null,
         ipAddress: String? = null
     ): Customer {
-
-        return client.post(Customer::class.java, customerUrl(id), JsonBody(
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody(
                 "email" to email,
                 "address1" to address1,
                 "address2" to address2,
@@ -304,17 +297,17 @@ class CustomersApi(private val client: Client) {
 
     @Throws(DwollaException::class, OAuthException::class)
     fun suspend(id: String): Customer {
-        return client.post(Customer::class.java, customerUrl(id), JsonBody("status" to "suspended")).body
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody("status" to "suspended")).body
     }
 
     @Throws(DwollaException::class, OAuthException::class)
     fun deactivate(id: String): Customer {
-        return client.post(Customer::class.java, customerUrl(id), JsonBody("status" to "deactivated")).body
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody("status" to "deactivated")).body
     }
 
     @Throws(DwollaException::class, OAuthException::class)
     fun reactivate(id: String): Customer {
-        return client.post(Customer::class.java, customerUrl(id), JsonBody("status" to "reactivated")).body
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody("status" to "reactivated")).body
     }
 
     @Throws(DwollaException::class, OAuthException::class)
@@ -334,8 +327,7 @@ class CustomersApi(private val client: Client) {
         phone: String? = null,
         ipAddress: String? = null
     ): Customer {
-
-        return client.post(Customer::class.java, customerUrl(id), JsonBody(
+        return dwolla.post(Customer::class.java, customerUrl(id), JsonBody(
                 "firstName" to firstName,
                 "lastName" to lastName,
                 "email" to email,
@@ -353,13 +345,15 @@ class CustomersApi(private val client: Client) {
     }
 
     private fun createCustomer(jsonBody: JsonBody, idempotencyKey: String?): Customer {
-        val createCustomer = client.post("customers", jsonBody, Headers("idempotency-key" to idempotencyKey))
-        val url = createCustomer.headers.get("location")!!
-        val getCustomer = client.get(Customer::class.java, url)
-        return getCustomer.body
+        return dwolla.postFollow(
+            Customer::class.java,
+            CUSTOMERS,
+            jsonBody,
+            Headers(IDEMPOTENCY_KEY to idempotencyKey)
+        ).body
     }
 
     private fun customerUrl(id: String): String {
-        return client.urlBuilder.buildUrl("customers", id)
+        return dwolla.urlBuilder.buildUrl(CUSTOMERS, id)
     }
 }

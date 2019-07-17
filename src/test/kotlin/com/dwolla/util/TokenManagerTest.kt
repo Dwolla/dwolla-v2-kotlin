@@ -1,6 +1,6 @@
 package com.dwolla.util
 
-import com.dwolla.Client
+import com.dwolla.Dwolla
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
@@ -36,8 +36,8 @@ class TokenManagerTest {
         assertEquals(newAccessToken, tokenManager.getAccessToken())
     }
 
-    private fun mockClient(): Client {
-        val client = mockk<Client>()
+    private fun mockClient(): Dwolla {
+        val client = mockk<Dwolla>()
         every { client.fetchToken() } returns Token(newAccessToken, 3600)
         return client
     }

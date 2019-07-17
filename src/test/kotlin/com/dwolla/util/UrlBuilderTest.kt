@@ -1,12 +1,12 @@
 package com.dwolla.util
 
-import com.dwolla.Client
+import com.dwolla.Dwolla
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 class UrlBuilderTest {
-    private val client = Client("id", "secret")
+    private val client = Dwolla("id", "secret")
     private val urlBuilder = client.urlBuilder
 
     @Test fun `builds url with path`() {

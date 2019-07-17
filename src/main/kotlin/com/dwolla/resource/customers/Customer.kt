@@ -1,7 +1,7 @@
 package com.dwolla.resource.customers
 
-import com.dwolla.resource.Links
 import com.dwolla.resource.HalResource
+import com.dwolla.resource.Links
 import java.time.Instant
 import java.util.Optional
 

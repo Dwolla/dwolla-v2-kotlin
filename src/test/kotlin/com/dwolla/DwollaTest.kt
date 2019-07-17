@@ -1,15 +1,15 @@
 package com.dwolla
 
-import com.github.kittinunf.fuel.core.Headers
 import com.dwolla.util.TokenManager
+import com.github.kittinunf.fuel.core.Headers
 import io.mockk.every
 import io.mockk.mockk
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class ClientTest {
-    private val client = Client("key", "secret")
+class DwollaTest {
+    private val client = Dwolla("key", "secret")
     private val mockFuelClient = mockk<com.github.kittinunf.fuel.core.Client>()
     private val mockTokenManager = mockk<TokenManager>()
     private val token = "access-token"

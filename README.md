@@ -80,7 +80,7 @@ First, let's set up a Dwolla client using our application key and secret.
 ###### Kotlin
 
 ```kotlin
-import com.dwolla.Client
+import com.dwolla.Dwolla
 import com.dwolla.Environment
 
 val dwolla = Client(
@@ -93,7 +93,7 @@ val dwolla = Client(
 ###### Java
 
 ```java
-import com.dwolla.Client;
+import com.dwolla.Dwolla;
 import com.dwolla.Environment;
 
 Client dwolla = new Client(

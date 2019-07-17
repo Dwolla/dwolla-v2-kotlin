@@ -1,16 +1,11 @@
 package com.dwolla
 
-import com.github.kittinunf.fuel.core.FuelManager
-import com.github.kittinunf.fuel.core.Request
-import com.github.kittinunf.fuel.core.ResponseResultOf
-import com.github.kittinunf.fuel.core.extensions.authentication
-import com.github.kittinunf.fuel.core.extensions.jsonBody
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.annotations.SerializedName
 import com.dwolla.api.BusinessClassificationsApi
 import com.dwolla.api.CustomersApi
 import com.dwolla.api.DocumentsApi
+import com.dwolla.api.FundingSourcesApi
+import com.dwolla.api.FundingSourcesTokensApi
+import com.dwolla.api.IavTokensApi
 import com.dwolla.api.RootApi
 import com.dwolla.exception.DwollaException
 import com.dwolla.exception.OAuthException
@@ -25,10 +20,18 @@ import com.dwolla.util.Deserializer
 import com.dwolla.util.Token
 import com.dwolla.util.TokenManager
 import com.dwolla.util.UrlBuilder
+import com.github.kittinunf.fuel.core.FuelManager
+import com.github.kittinunf.fuel.core.Request
+import com.github.kittinunf.fuel.core.ResponseResultOf
+import com.github.kittinunf.fuel.core.extensions.authentication
+import com.github.kittinunf.fuel.core.extensions.jsonBody
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.annotations.SerializedName
 import net.dongliu.gson.GsonJava8TypeAdapterFactory
 import java.util.Optional
 
-class Client(
+class Dwolla(
     @JvmField val key: String,
     @JvmField internal val secret: String,
     @JvmField val environment: Environment = Environment.PRODUCTION
@@ -48,6 +51,9 @@ class Client(
     @JvmField val customers = CustomersApi(this)
     @JvmField val documents = DocumentsApi(this)
     @JvmField val root = RootApi(this)
+    @JvmField val fundingSources = FundingSourcesApi(this)
+    @JvmField val fundingSourcesTokens = FundingSourcesTokensApi(this)
+    @JvmField val iavTokens = IavTokensApi(this)
 
     @Throws(DwollaException::class, OAuthException::class)
     fun get(path: String): Response<String> {
@@ -173,6 +179,82 @@ class Client(
         return makeRequest(deserializeAs, fuelManager.upload(url).add(*body.list.toTypedArray()).header(headers.map))
     }
 
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(makeRequest(fuelManager.post(url)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String, headers: Headers): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(makeRequest(fuelManager.post(url).header(headers.map)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String, body: JsonBody): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        val jsonBody = gson.toJson(body.map)
+        return follow(makeRequest(fuelManager.post(url).jsonBody(jsonBody)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String, body: MultipartBody): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(makeRequest(fuelManager.upload(url).add(*body.list.toTypedArray())))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String, body: JsonBody, headers: Headers): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        val jsonBody = gson.toJson(body.map)
+        return follow(makeRequest(fuelManager.post(url).jsonBody(jsonBody).header(headers.map)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun postFollow(path: String, body: MultipartBody, headers: Headers): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(makeRequest(fuelManager.upload(url).add(*body.list.toTypedArray()).header(headers.map)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(deserializeAs, makeRequest(fuelManager.post(url)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, headers: Headers): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(deserializeAs, makeRequest(fuelManager.post(url).header(headers.map)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, body: JsonBody): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        val jsonBody = gson.toJson(body.map)
+        return follow(deserializeAs, makeRequest(fuelManager.post(url).jsonBody(jsonBody)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, body: MultipartBody): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(deserializeAs, makeRequest(fuelManager.upload(url).add(*body.list.toTypedArray())))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, body: JsonBody, headers: Headers): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        val jsonBody = gson.toJson(body.map)
+        return follow(deserializeAs, makeRequest(fuelManager.post(url).jsonBody(jsonBody).header(headers.map)))
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, body: MultipartBody, headers: Headers): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        return follow(deserializeAs, makeRequest(fuelManager.upload(url).add(*body.list.toTypedArray()).header(headers.map)))
+    }
+
     internal fun fetchToken(): Token {
         val result = fuelManager
             .post(environment.tokenUrl, listOf("grant_type" to "client_credentials"))
@@ -195,6 +277,16 @@ class Client(
                 }
             }
         )
+    }
+
+    private fun follow(response: Response<String>): Response<String> {
+        val location = response.headers.get(com.dwolla.util.Headers.LOCATION)!!
+        return get(location)
+    }
+
+    private fun <T : Any> follow(deserializeAs: Class<T>, response: Response<String>): Response<T> {
+        val location = response.headers.get(com.dwolla.util.Headers.LOCATION)!!
+        return get(deserializeAs, location)
     }
 
     private fun makeRequest(request: Request): Response<String> {
@@ -237,6 +329,7 @@ class Client(
     private fun initializeGson(): Gson {
         return GsonBuilder()
             .registerTypeAdapterFactory(GsonJava8TypeAdapterFactory())
+            .setPrettyPrinting()
             .create()
     }
 }

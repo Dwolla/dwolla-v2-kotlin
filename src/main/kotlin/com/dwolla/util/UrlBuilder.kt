@@ -1,14 +1,14 @@
 package com.dwolla.util
 
-import com.dwolla.Client
+import com.dwolla.Dwolla
 
-internal class UrlBuilder(private val client: Client) {
+internal class UrlBuilder(private val dwolla: Dwolla) {
 
     fun buildUrl(vararg parts: String): String {
-        return parts.fold(client.environment.apiUrl) { url, p ->
+        return parts.fold(dwolla.environment.apiUrl) { url, p ->
             when {
-                p.startsWith(client.environment.apiUrl) -> trimSlashes(p)
-                p.contains(":") -> throw IllegalArgumentException("bad")
+                p.startsWith(dwolla.environment.apiUrl) -> trimSlashes(p)
+                p.contains(":") -> throw IllegalArgumentException("bad") // TODO
                 else -> "$url/${trimSlashes(p)}"
             }
         }
