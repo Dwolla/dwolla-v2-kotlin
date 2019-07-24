@@ -28,6 +28,7 @@ abstract class Examples {
         println(dwolla.gson.toJson(result).prependIndent("  "))
         println("")
         println("")
+        Thread.sleep(1000)
         return result
     }
 

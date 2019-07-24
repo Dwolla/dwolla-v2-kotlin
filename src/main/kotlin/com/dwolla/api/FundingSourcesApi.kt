@@ -7,12 +7,15 @@ import com.dwolla.exception.DwollaException
 import com.dwolla.exception.OAuthException
 import com.dwolla.http.Headers
 import com.dwolla.http.JsonBody
+import com.dwolla.http.Query
 import com.dwolla.resource.fundingsources.FundingSource
+import com.dwolla.resource.fundingsources.FundingSourceBalance
 import com.dwolla.resource.fundingsources.FundingSources
 import com.dwolla.resource.fundingsources.MicroDeposits
 import com.dwolla.resource.fundingsources.MicroDepositsVerified
 import com.dwolla.util.Headers.Companion.IDEMPOTENCY_KEY
 import com.dwolla.util.Paths
+import com.dwolla.util.Paths.Companion.BALANCE
 import com.dwolla.util.Paths.Companion.CUSTOMERS
 import com.dwolla.util.Paths.Companion.FUNDING_SOURCES
 import com.dwolla.util.Paths.Companion.ON_DEMAND_AUTHORIZATIONS
@@ -29,6 +32,7 @@ class FundingSourcesApi(private val dwolla: Dwolla) {
         plaidToken: String? = null,
         channels: List<FundingSourceChannel>? = null,
         onDemandAuthorizationId: String? = null,
+        verified: Boolean? = null,
         idempotencyKey: String? = null
     ): FundingSource {
 
@@ -42,7 +46,8 @@ class FundingSourcesApi(private val dwolla: Dwolla) {
                 "bankAccountType" to bankAccountType,
                 "name" to name,
                 "plaidToken" to plaidToken,
-                "channels" to channels
+                "channels" to channels,
+                "verified" to verified
             ),
             Headers(IDEMPOTENCY_KEY to idempotencyKey)
         ).body
@@ -54,8 +59,21 @@ class FundingSourcesApi(private val dwolla: Dwolla) {
     }
 
     @Throws(DwollaException::class, OAuthException::class)
-    fun listByCustomer(customerId: String): FundingSources {
-        return dwolla.get(FundingSources::class.java, customerFundingSourcesUrl(customerId)).body
+    fun getBalance(id: String): FundingSourceBalance {
+        return dwolla.get(FundingSourceBalance::class.java, fundingSourceBalanceUrl(id)).body
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    fun listByCustomer(
+        customerId: String,
+        removed: Boolean? = null
+    ): FundingSources {
+
+        return dwolla.get(
+            FundingSources::class.java,
+            customerFundingSourcesUrl(customerId),
+            Query("removed" to removed)
+        ).body
     }
 
     @Throws(DwollaException::class, OAuthException::class)
@@ -140,6 +158,10 @@ class FundingSourcesApi(private val dwolla: Dwolla) {
 
     private fun fundingSourceMicroDepositsUrl(id: String): String {
         return dwolla.urlBuilder.buildUrl(FUNDING_SOURCES, id, Paths.MICRO_DEPOSITS)
+    }
+
+    private fun fundingSourceBalanceUrl(id: String): String {
+        return dwolla.urlBuilder.buildUrl(FUNDING_SOURCES, id, BALANCE)
     }
 
     private fun amountMap(amount: String): Map<String, String> {

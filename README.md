@@ -6,7 +6,7 @@ Please note this library is currently a **PREVIEW**:
 
 - A small subset of APIs are currently implemented:
   - [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
-    - `getById`
+    - `get`
     - `list`
     - `createReceiveOnly`
     - `createUnverified`
@@ -25,10 +25,20 @@ Please note this library is currently a **PREVIEW**:
     - `list`
   - [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
     - `createForCustomer`
-    - `getById`
+    - `get`
     - `listByCustomer`
   - [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt).
     - `get`
+  - [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
+    - `createForCustomer`
+    - `get`
+    - `listByCustomer`
+    - `update`
+    - `remove`
+    - `initiateMicroDeposits`
+    - `getMicroDeposits`
+    - `verifyMicroDeposits`
+    
 - Breaking changes could be introduced as we gather your [feedback](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Installation
@@ -83,7 +93,7 @@ First, let's set up a Dwolla client using our application key and secret.
 import com.dwolla.Dwolla
 import com.dwolla.Environment
 
-val dwolla = Client(
+val dwolla = Dwolla(
     key = "yourClientKey",       // see dashboard.dwolla.com
     secret = "yourClientSecret", // for your client credentials
     environment = Environment.SANDBOX
@@ -96,7 +106,7 @@ val dwolla = Client(
 import com.dwolla.Dwolla;
 import com.dwolla.Environment;
 
-Client dwolla = new Client(
+Dwolla dwolla = new Dwolla(
     "yourClientKey",    // see dashboard.dwolla.com
     "yourClientSecret", // for your client credentials
     Environment.SANDBOX

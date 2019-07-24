@@ -2,6 +2,7 @@ package com.dwolla.resource.customers
 
 import com.dwolla.resource.HalResource
 import com.dwolla.resource.Links
+import com.dwolla.shared.State
 import java.time.Instant
 import java.util.Optional
 
@@ -17,7 +18,7 @@ data class Customer(
     @JvmField val address1: Optional<String>,
     @JvmField val address2: Optional<String>,
     @JvmField val city: Optional<String>,
-    @JvmField val state: Optional<String>,
+    @JvmField val state: Optional<State>,
     @JvmField val postalCode: Optional<String>,
     @JvmField val phone: Optional<String>,
     @JvmField val businessName: Optional<String>,

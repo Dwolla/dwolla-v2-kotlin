@@ -5,6 +5,5 @@ import com.dwolla.resource.Links
 
 data class FundingSources(
     @JvmField val _links: Links,
-    @JvmField val _embedded: EmbeddedFundingSources,
-    @JvmField val total: Int
+    @JvmField val _embedded: EmbeddedFundingSources
 ) : HalResource(_links)

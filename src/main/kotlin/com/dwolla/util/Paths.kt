@@ -2,6 +2,7 @@ package com.dwolla.util
 
 internal class Paths {
     companion object {
+        const val BALANCE = "balance"
         const val BENEFICIAL_OWNERS = "beneficial-owners"
         const val BUSINESS_CLASSIFICATIONS = "business-classifications"
         const val CUSTOMERS = "customers"
