@@ -11,10 +11,14 @@ import com.dwolla.http.JsonBody
 import com.dwolla.http.Query
 import com.dwolla.resource.customers.Customer
 import com.dwolla.resource.customers.Customers
+import com.dwolla.resource.customers.FundingSourcesToken
+import com.dwolla.resource.customers.IavToken
 import com.dwolla.shared.DateOfBirth
 import com.dwolla.shared.State
 import com.dwolla.util.Headers.Companion.IDEMPOTENCY_KEY
 import com.dwolla.util.Paths.Companion.CUSTOMERS
+import com.dwolla.util.Paths.Companion.FUNDING_SOURCES_TOKEN
+import com.dwolla.util.Paths.Companion.IAV_TOKEN
 
 class CustomersApi(private val dwolla: Dwolla) {
 
@@ -376,6 +380,16 @@ class CustomersApi(private val dwolla: Dwolla) {
         )).body
     }
 
+    @Throws(DwollaException::class, OAuthException::class)
+    fun createIavToken(id: String): IavToken {
+        return dwolla.post(IavToken::class.java, iavTokenUrl(id)).body
+    }
+
+    @Throws(DwollaException::class, OAuthException::class)
+    fun createFundingSourcesToken(id: String): FundingSourcesToken {
+        return dwolla.post(FundingSourcesToken::class.java, fundingSourcesTokenUrl(id)).body
+    }
+
     private fun createCustomer(jsonBody: JsonBody, idempotencyKey: String?): Customer {
         return dwolla.postFollow(
             Customer::class.java,
@@ -387,5 +401,13 @@ class CustomersApi(private val dwolla: Dwolla) {
 
     private fun customerUrl(id: String): String {
         return dwolla.urlBuilder.buildUrl(CUSTOMERS, id)
+    }
+
+    private fun fundingSourcesTokenUrl(id: String): String {
+        return dwolla.urlBuilder.buildUrl(CUSTOMERS, id, FUNDING_SOURCES_TOKEN)
+    }
+
+    private fun iavTokenUrl(id: String): String {
+        return dwolla.urlBuilder.buildUrl(CUSTOMERS, id, IAV_TOKEN)
     }
 }

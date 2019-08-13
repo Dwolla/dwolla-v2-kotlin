@@ -65,5 +65,9 @@ class FundingSourcesExamples : Examples() {
         example("verifyMicroDeposits") {
             dwolla.fundingSources.verifyMicroDeposits(fundingSource.id, "0.01", "0.02")
         }
+
+        example("remove") {
+            dwolla.fundingSources.remove(fundingSource.id)
+        }
     }
 }

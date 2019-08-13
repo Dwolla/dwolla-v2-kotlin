@@ -5,6 +5,7 @@ Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for 
 Please note this library is currently a **PREVIEW**:
 
 - A small subset of APIs are currently implemented:
+
   - [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
     - `get`
     - `list`
@@ -14,31 +15,41 @@ Please note this library is currently a **PREVIEW**:
     - `createVerifiedSoleProp`
     - `createVerifiedBusiness`
     - `updateUnverified`
-    - `updateVerified`
+    - `updateVerifiedPersonal`
     - `updateVerifiedBusiness`
     - `upgradeToVerifiedPersonal`
     - `suspend`
     - `deactivate`
     - `reactivate`
-    - `retryVerified`
+    - `retryVerifiedPersonal`
+    - `retryVerifiedBusiness`
+    - `createIavToken`
+    - `createFundingSourceToken`
+
   - [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
     - `list`
+
   - [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
     - `createForCustomer`
+    - `createForBeneficialOwner`
     - `get`
     - `listByCustomer`
+    - `listByBeneficialOwner`
+
   - [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt).
     - `get`
+
   - [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
     - `createForCustomer`
     - `get`
+    - `getBalance`
     - `listByCustomer`
     - `update`
     - `remove`
     - `initiateMicroDeposits`
     - `getMicroDeposits`
     - `verifyMicroDeposits`
-    
+
 - Breaking changes could be introduced as we gather your [feedback](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Installation

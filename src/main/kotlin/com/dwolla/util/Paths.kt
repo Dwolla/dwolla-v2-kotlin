@@ -8,8 +8,8 @@ internal class Paths {
         const val CUSTOMERS = "customers"
         const val DOCUMENTS = "documents"
         const val FUNDING_SOURCES = "funding-sources"
-        const val FUNDING_SOURCES_TOKENS = "funding-sources-tokens"
-        const val IAV_TOKENS = "iav-tokens"
+        const val FUNDING_SOURCES_TOKEN = "funding-sources-token"
+        const val IAV_TOKEN = "iav-token"
         const val MICRO_DEPOSITS = "micro-deposits"
         const val ON_DEMAND_AUTHORIZATIONS = "on-demand-authorizations"
     }

@@ -15,7 +15,7 @@ class CustomersExamples : Examples() {
     override val scope = "dwolla.customers"
 
     override fun run() {
-        val businessClassifications = dwolla.businessClassifications.list()
+        val businessClassification = dwolla.businessClassifications.list()._embedded.businessClassifications.first()._embedded.industryClassifications.first().id
 
         example("createReceiveOnly") {
             dwolla.customers.createReceiveOnly(
@@ -58,6 +58,22 @@ class CustomersExamples : Examples() {
             )
         }
 
+        example("createVerifiedSoleProp") {
+            dwolla.customers.createVerifiedSoleProp(
+                firstName = rand(),
+                lastName = rand(),
+                email = "${rand()}@test.com",
+                address1 = "123 main st",
+                city = "des moines",
+                state = State.IA,
+                dateOfBirth = DateOfBirth("1990", "01", "01"),
+                postalCode = "50309",
+                ssn = "1234",
+                businessClassification = businessClassification,
+                businessName = rand()
+            )
+        }
+
         val verifiedBusiness =
         example("createVerifiedBusiness") {
             dwolla.customers.createVerifiedBusiness(
@@ -68,7 +84,7 @@ class CustomersExamples : Examples() {
                 city = "des moines",
                 state = State.IA,
                 postalCode = "50309",
-                businessClassification = businessClassifications._embedded.businessClassifications.first()._embedded.industryClassifications.first().id,
+                businessClassification = businessClassification,
                 businessName = rand(),
                 businessType = BusinessType.LLC,
                 ein = "123531243",
@@ -182,7 +198,7 @@ class CustomersExamples : Examples() {
             city = "des moines",
             state = State.IA,
             postalCode = "50309",
-            businessClassification = businessClassifications._embedded.businessClassifications.first()._embedded.industryClassifications.first().id,
+            businessClassification = businessClassification,
             businessName = rand(),
             businessType = BusinessType.LLC,
             ein = "123531243",
@@ -210,6 +226,24 @@ class CustomersExamples : Examples() {
                 state = State.IA,
                 postalCode = "50309"
             )
+        }
+
+        example("createIavToken") {
+            val c = dwolla.customers.createReceiveOnly(
+                firstName = rand(),
+                lastName = rand(),
+                email = "${rand()}@test.com"
+            )
+            dwolla.customers.createIavToken(c.id)
+        }
+
+        example("createFundingSourcesToken") {
+            val c = dwolla.customers.createReceiveOnly(
+                firstName = rand(),
+                lastName = rand(),
+                email = "${rand()}@test.com"
+            )
+            dwolla.customers.createFundingSourcesToken(c.id)
         }
     }
 }

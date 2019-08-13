@@ -6,7 +6,7 @@ enum class Country(
     @JvmField val value: String,
     @JvmField val displayName: String
 ) {
-    
+
     @SerializedName("AD")
     AD("AD", "Andorra, Principality of"),
 

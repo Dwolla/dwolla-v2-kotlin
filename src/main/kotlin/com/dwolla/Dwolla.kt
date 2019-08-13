@@ -4,8 +4,6 @@ import com.dwolla.api.BusinessClassificationsApi
 import com.dwolla.api.CustomersApi
 import com.dwolla.api.DocumentsApi
 import com.dwolla.api.FundingSourcesApi
-import com.dwolla.api.FundingSourcesTokensApi
-import com.dwolla.api.IavTokensApi
 import com.dwolla.api.RootApi
 import com.dwolla.exception.DwollaException
 import com.dwolla.exception.OAuthException
@@ -52,8 +50,6 @@ class Dwolla(
     @JvmField val documents = DocumentsApi(this)
     @JvmField val root = RootApi(this)
     @JvmField val fundingSources = FundingSourcesApi(this)
-    @JvmField val fundingSourcesTokens = FundingSourcesTokensApi(this)
-    @JvmField val iavTokens = IavTokensApi(this)
 
     @Throws(DwollaException::class, OAuthException::class)
     fun get(path: String): Response<String> {
