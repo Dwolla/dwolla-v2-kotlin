@@ -61,9 +61,7 @@ Add this to your project's build file:
 ```groovy
 repositories {
     // ...
-    maven(url = "https://jitpack.io") {
-        name = "jitpack"
-    }
+    maven { url 'https://jitpack.io' }
 }
 ```
 
