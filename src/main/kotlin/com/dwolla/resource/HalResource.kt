@@ -1,7 +1,14 @@
 package com.dwolla.resource
 
-open class HalResource(private val links: Links) {
+// not working with GSON
+abstract class HalResource {
+    protected abstract fun getLinks(): Links
+
+    fun getHref(name: String): String {
+        return getLinks().get(name)!!.href
+    }
+
     fun hasLink(key: String): Boolean {
-        return links.containsKey(key)
+        return getLinks().containsKey(key)
     }
 }

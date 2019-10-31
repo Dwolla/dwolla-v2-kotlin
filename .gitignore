@@ -9,3 +9,5 @@ build
 
 # In the words of Kenny Powers…
 out/
+
+.DS_Store

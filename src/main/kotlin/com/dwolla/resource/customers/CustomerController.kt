@@ -1,13 +1,13 @@
 package com.dwolla.resource.customers
 
-import java.util.Optional
+import com.dwolla.resource.shared.InternationalAddress
 
 data class CustomerController(
     @JvmField val firstName: String,
     @JvmField val lastName: String,
     @JvmField val title: String,
     @JvmField val dateOfBirth: String,
-    @JvmField val address: CustomerControllerAddress,
-    @JvmField val ssn: Optional<String>,
-    @JvmField val passport: Optional<String>
+    @JvmField val address: InternationalAddress,
+    @JvmField val ssn: String?,
+    @JvmField val passport: String?
 )

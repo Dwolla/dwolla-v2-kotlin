@@ -1,6 +1,7 @@
 package com.dwolla.util
 
-import com.dwolla.Client
+import com.dwolla.Dwolla
+import com.dwolla.TokenResponse
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
@@ -36,14 +37,16 @@ class TokenManagerTest {
         assertEquals(newAccessToken, tokenManager.getAccessToken())
     }
 
-    private fun mockClient(): Client {
-        val client = mockk<Client>()
-        every { client.fetchToken() } returns Token(newAccessToken, 3600)
+    private fun mockClient(): Dwolla {
+        val client = mockk<Dwolla>()
+        every {
+            client.fetchToken("grant_type" to "client_credentials")
+        } returns TokenResponse(newAccessToken, 3600)
         return client
     }
 
-    private fun mockToken(fresh: Boolean): Token {
-        val token = mockk<Token>()
+    private fun mockToken(fresh: Boolean): TokenManagerToken {
+        val token = mockk<TokenManagerToken>()
         every { token.accessToken } returns existingAccessToken
         every { token.isExpired() } returns !fresh
         return token

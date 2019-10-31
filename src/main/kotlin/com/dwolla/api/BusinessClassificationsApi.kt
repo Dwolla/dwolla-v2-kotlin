@@ -1,14 +1,15 @@
 package com.dwolla.api
 
-import com.dwolla.Client
-import com.dwolla.exception.DwollaException
-import com.dwolla.exception.OAuthException
+import com.dwolla.DwollaClient
+import com.dwolla.exception.DwollaApiException
+import com.dwolla.exception.DwollaAuthException
 import com.dwolla.resource.businessclassifications.BusinessClassifications
+import com.dwolla.util.Paths.Companion.BUSINESS_CLASSIFICATIONS
 
-class BusinessClassificationsApi(private val client: Client) {
+class BusinessClassificationsApi(private val client: DwollaClient) {
 
-    @Throws(DwollaException::class, OAuthException::class)
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun list(): BusinessClassifications {
-        return client.get(BusinessClassifications::class.java, "business-classifications").body
+        return client.get(BusinessClassifications::class.java, BUSINESS_CLASSIFICATIONS).body
     }
 }

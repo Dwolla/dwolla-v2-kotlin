@@ -11,4 +11,8 @@ data class Document(
     @JvmField val type: DocumentType,
     @JvmField val created: Instant,
     @JvmField val failureReason: DocumentFailureReason
-) : HalResource(_links)
+) : HalResource() {
+    override fun getLinks(): Links {
+        return _links
+    }
+}

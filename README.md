@@ -1,35 +1,7 @@
-# Dwolla V2 Kotlin Preview
+# Dwolla V2 Kotlin
 
-Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for the Kotlin and Java programming languages.
-
-Please note this library is currently a **PREVIEW**:
-
-- A small subset of APIs are currently implemented:
-  - [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
-    - `getById`
-    - `list`
-    - `createReceiveOnly`
-    - `createUnverified`
-    - `createVerifiedPersonal`
-    - `createVerifiedSoleProp`
-    - `createVerifiedBusiness`
-    - `updateUnverified`
-    - `updateVerified`
-    - `updateVerifiedBusiness`
-    - `upgradeToVerifiedPersonal`
-    - `suspend`
-    - `deactivate`
-    - `reactivate`
-    - `retryVerified`
-  - [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
-    - `list`
-  - [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
-    - `createForCustomer`
-    - `getById`
-    - `listByCustomer`
-  - [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt).
-    - `get`
-- Breaking changes could be introduced as we gather your [feedback](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
+Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for the **Kotlin** and **Java**
+programming languages.
 
 ## Installation
 
@@ -50,7 +22,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>master-SNAPSHOT</version>
+    <version>0.1</version>
 </dependency>
 ```
 
@@ -69,137 +41,111 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:master-SNAPSHOT")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1")
 }
 ```
 
 ## Getting Started
 
-First, let's set up a Dwolla client using our application key and secret.
+Before making requests, you'll need to set up a Dwolla client using your app credentials.
 
-###### Kotlin
+Your app credentials can be found on the applications page of the Dwolla Dashboard
+([sandbox](https://dashboard-sandbox.dwolla.com/applications),
+[production](https://dashboard.dwolla.com/applications)).
+
+#### Kotlin
 
 ```kotlin
-import com.dwolla.Client
-import com.dwolla.Environment
+import com.dwolla.Dwolla
+import com.dwolla.DwollaEnvironment
 
-val dwolla = Client(
-    key = "yourClientKey",       // see dashboard.dwolla.com
-    secret = "yourClientSecret", // for your client credentials
-    environment = Environment.SANDBOX
+val dwolla = Dwolla(
+    key = "YOUR_APP_KEY",
+    secret = "YOUR_APP_SECRET",
+    environment = DwollaEnvironment.SANDBOX // defaults to PRODUCTION
 )
 ```
 
-###### Java
+#### Java
 
 ```java
-import com.dwolla.Client;
-import com.dwolla.Environment;
+import com.dwolla.Dwolla;
+import com.dwolla.DwollaEnvironment;
 
-Client dwolla = new Client(
-    "yourClientKey",    // see dashboard.dwolla.com
-    "yourClientSecret", // for your client credentials
-    Environment.SANDBOX
+Dwolla dwolla = new Dwolla(
+    "YOUR_APP_KEY",
+    "YOUR_APP_SECRET",
+    DwollaEnvironment.SANDBOX // defaults to PRODUCTION
 );
 ```
 
-## Making requests
+## Making Requests
 
-Dwolla V2 Kotlin is experimenting with providing higher-level APIs
-in addition to the lower-level APIs found in our
-[existing SDKs](https://docs.dwolla.com/#sdk-support).
+The Dwolla client provides **low-level** and **high-level** methods for interacting with the Dwolla API.
 
-These methods are intended to make the SDK more self-documenting by providing
-information developers would typically refer to the docs for (such as request
-parameters) in the SDK itself.
+### Low-level methods
 
-Below, we'll take a look at creating an unverified customer using the high-level
-APIs compared to the lower-level APIs.
+The low-level methods `get`, `post`, and `delete` send HTTP requests to the Dwolla API using your app credentials.
+These methods are all you need to use the Dwolla API. You can refer to the [Dwolla API Docs](https://docs.dwolla.com/)
+for information on supported endpoints, request parameters, and response parameters.
 
-#### High-level example
+- `dwolla.get`
+- `dwolla.post`
+- `dwolla.delete`
 
-###### Kotlin
+Examples:
+- [Kotlin](docs/low_level_examples_kotlin.md)
+- [Java](docs/low_level_examples_java.md)
 
-```kotlin
-val customer = dwolla.customers.createUnverified(
-    firstName = "First",
-    lastName = "Last",
-    email = "first.last@gmail.com",
-    idempotencyKey = "h532jk"
-)
-```
+### High-level methods (🚧 Under construction)
 
-###### Java
+> The best SDKs are not just simple; they’re intuitive. Developers would rather stay in the flow of their code than
+> troubleshoot back-and-forth trying to figure out someone else’s code. Luckily, statically typed languages let us
+> include information typically found in docs within type signatures.
+>
+> &mdash; [Taking Our SDKs Higher](https://www.dwolla.com/updates/improving-sdks/)
 
-```java
-Customer customer = dwolla.customers.createUnverified(
-    "First",
-    "Last",
-    "first.last@gmail.com",
-    null,
-    null,
-    "h532jk"
-);
-```
+While the low-level methods are all you need, high-level methods exist to make things easier. They embed information
+you would typically refer to the docs for in the SDK itself such as endpoints, request parameters, and response parameters.
 
-#### Low-level example
+As of now, a subset of the Dwolla API has high-level methods available:
 
-###### Kotlin
-
-```kotlin
-val createCustomer: Response<String> = dwolla.post("customers",
-    JsonBody(
-        "firstName" to "First",
-        "lastName" to "Last",
-        "email" to "first.last@gmail.com"
-    ),
-    Headers("idempotency-key" to "h532jk")
-)
-
-val getCustomer: Response<Customer> = dwolla.get(Customer::class.java, createCustomer.headers.get("location")!!)
-getCustomer.statusCode // 200
-getCustomer.headers // Headers
-getCustomer.body // Customer
-```
-
-###### Java
-
-```java
-Response<String> createCustomer = dwolla.post("customers",
-    new JsonBody()
-        .add("firstName", "First")
-        .add("lastName", "Last")
-        .add("email", "first.last@gmail.com"),
-    new Headers()
-        .add("idempotency-key", "h532jk")
-);
-
-Response<Customer> getCustomer = dwolla.get(Customer.class, createCustomer.headers.get("location"));
-Integer statusCode = getCustomer.statusCode; // 200
-Headers headers = getCustomer.headers; // Headers
-Customer customer = getCustomer.body; // Customer
-```
+- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/AccountsApi.kt)
+- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
+- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
+- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
+- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
+- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
+- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
+- [x] [`dwolla.iavTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/IavTokensApi.kt)
+- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt)
+- [ ] `dwolla.events.*`
+- [ ] `dwolla.labels.*`
+- [ ] `dwolla.massPayments.*`
+- [ ] `dwolla.transfers.*`
+- [ ] `dwolla.webhooks.*`
+- [ ] `dwolla.webhookSubscriptions.*`
 
 ## Handling errors
 
 Requests made with Dwolla V2 Kotlin throw two types of exceptions:
 
-- `DwollaException`: Thrown when a request is unsuccessful. This could occur for a variety of reasons such as
+- `DwollaApiException`: Thrown when a request is unsuccessful. This could occur for a variety of reasons such as
   invalid request parameters. Details can be found in the exception's `DwollaError` object.
-- `OAuthException`: Thrown when an error occurs obtaining a new token. You should not encounter this exception
-  unless your `Client` key and/or secret is incorrect.
+- `DwollaAuthException`: Thrown when an error occurs obtaining a new token. You should not encounter this exception
+  unless your `Dwolla` key and/or secret is incorrect.
 
-###### Kotlin
+#### Kotlin
 
 ```kotlin
 try {
     dwolla.customers.list()
-} catch (e: DwollaException) {
+} catch (e: DwollaApiException) {
     e.message // String
     e.statusCode // Int
     e.headers // Headers
     e.error // DwollaError
-} catch (e: OAuthException) {
+} catch (e: DwollaApiException) {
     e.message // String
     e.statusCode // Int
     e.headers // Headers
@@ -207,18 +153,17 @@ try {
 }
 ```
 
-###### Java
+#### Java
 
 ```java
 try {
-    Client dwolla = new Client("key", "secret", Environment.SANDBOX);
-    dwolla.customers.list(null, null, null, null);
-} catch (DwollaException e) {
+    dwolla.customers.list();
+} catch (DwollaApiException e) {
     String message = e.message;
     Integer statusCode = e.statusCode;
     Headers headers = e.headers;
     DwollaError error = e.error;
-} catch (OAuthException e) {
+} catch (DwollaAuthException e) {
     String message = e.message;
     Integer statusCode = e.statusCode;
     Headers headers = e.headers;
@@ -228,8 +173,27 @@ try {
 
 ## Feedback
 
-As mentioned previously, the Dwolla V2 Kotlin SDK is currently provided as
-a preview to developers so we can gather feedback prior to release.
-
 If you have any feedback feel free to reach out to us or
 [create an issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
+
+## Changelog
+
+- **0.1.0**
+  - Refactoring
+    - `Client` => `Dwolla`
+    - `Environment` => `DwollaEnvironment`
+    - `DwollaException` => `DwollaApiException`
+    - `OAuthException` => `DwollaAuthException`
+  - Add OpenID support
+    - `dwolla.auth()`
+    - `dwolla.token()`
+    - `dwolla.refreshToken()`
+  - Additional high-level APIs
+    - `dwolla.accounts.*`
+    - `dwolla.beneficialOwners.*`
+    - `dwolla.fundingSources.*`
+    - `dwolla.fundingSourcesTokens.*`
+    - `dwolla.iavTokens.*`
+  - Refactored high-level APIs
+- **0.1.0-pre1**
+  - Initial release
