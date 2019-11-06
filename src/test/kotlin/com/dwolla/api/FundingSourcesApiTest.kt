@@ -6,8 +6,11 @@ import com.dwolla.api.shared.DateOfBirth
 import com.dwolla.resource.fundingsources.FundingSource
 import com.dwolla.resource.fundingsources.FundingSourceType
 import com.dwolla.shared.USState
+import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Tags
 import kotlin.test.Test
 
+@Tags(Tag("api"))
 class FundingSourcesApiTest : ApiTest() {
 
     private val customer = dwolla.customers.createVerifiedPersonal(

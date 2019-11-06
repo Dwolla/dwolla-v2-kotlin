@@ -1,14 +1,29 @@
 language: java
 install: true
 jdk:
+#- openjdk13 # see jobs.include
+- openjdk12
+- openjdk11
+- openjdk10
 - openjdk9
-- openjdk8
+#- openjdk8 # see jobs.include
+- oraclejdk13
+- oraclejdk12
 - oraclejdk11
 - oraclejdk9
-- oraclejdk8
+jobs:
+  include:
+    - jdk: openjdk13
+      script:
+      - "./gradlew ktlintCheck"
+      - "./gradlew test"
+    - jdk: openjdk8
+      script:
+      - "./gradlew ktlintCheck"
+      - "./gradlew test"
 script:
 - "./gradlew ktlintCheck"
-- "./gradlew test"
+- "./gradlew test -PjUnitExcludeTags=api"
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

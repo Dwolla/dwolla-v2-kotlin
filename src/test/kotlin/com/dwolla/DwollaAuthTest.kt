@@ -16,7 +16,7 @@ class DwollaAuthTest {
     val code = "my-code"
     val dwolla = mockClient()
 
-    @Test fun authUrlWithoutState() {
+    @Test() fun authUrlWithoutState() {
         val auth = DwollaAuth(dwolla, redirectUri = redirectUri, scope = scope)
 
         assertEquals(

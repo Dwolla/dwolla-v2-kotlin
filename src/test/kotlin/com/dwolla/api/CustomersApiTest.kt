@@ -9,9 +9,12 @@ import com.dwolla.resource.customers.Customer
 import com.dwolla.resource.customers.CustomerStatus
 import com.dwolla.shared.Country
 import com.dwolla.shared.USState
+import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Tags
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+@Tags(Tag("api"))
 class CustomersApiTest : ApiTest() {
 
     @Test

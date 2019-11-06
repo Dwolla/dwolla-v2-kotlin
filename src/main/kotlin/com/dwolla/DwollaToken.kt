@@ -1,15 +1,6 @@
 package com.dwolla
 
-import com.dwolla.api.AccountsApi
-import com.dwolla.api.BeneficialOwnersApi
-import com.dwolla.api.BusinessClassificationsApi
-import com.dwolla.api.CustomersApi
-import com.dwolla.api.DocumentsApi
-import com.dwolla.api.FundingSourcesApi
-import com.dwolla.api.FundingSourcesTokensApi
-import com.dwolla.api.IavTokensApi
-import com.dwolla.api.RootApi
-import com.dwolla.api.TransfersApi
+import com.dwolla.api.* // ktlint-disable no-wildcard-imports
 
 class DwollaToken(
     environment: DwollaEnvironment,

@@ -9,8 +9,11 @@ import com.dwolla.resource.beneficialowners.BeneficialOwner
 import com.dwolla.resource.customers.Customer
 import com.dwolla.shared.Country
 import com.dwolla.shared.USState
+import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Tags
 import kotlin.test.Test
 
+@Tags(Tag("api"))
 class BeneficialOwnersApiTest : ApiTest() {
 
     private val c = createVerifiedBusiness()

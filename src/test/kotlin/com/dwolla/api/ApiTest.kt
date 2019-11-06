@@ -1,7 +1,7 @@
 package com.dwolla.api
 
 import com.dwolla.Instances.dwolla
-import java.util.UUID
+import java.util.* // ktlint-disable no-wildcard-imports
 
 abstract class ApiTest {
 
@@ -16,7 +16,7 @@ abstract class ApiTest {
         println("$className.$methodName")
         val res = body()
         println(dwolla.gson.toJson(res))
-        Thread.sleep(2000)
+        Thread.sleep(1000)
         return res
     }
 

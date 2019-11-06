@@ -2,11 +2,7 @@ package com.dwolla
 
 import com.dwolla.exception.DwollaApiException
 import com.dwolla.exception.DwollaAuthException
-import com.dwolla.http.Headers
-import com.dwolla.http.JsonBody
-import com.dwolla.http.MultipartBody
-import com.dwolla.http.Query
-import com.dwolla.http.Response
+import com.dwolla.http.* // ktlint-disable no-wildcard-imports
 import com.dwolla.resource.DwollaError
 import com.dwolla.util.Deserializer
 import com.dwolla.util.UrlBuilder

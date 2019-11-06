@@ -8,11 +8,7 @@ import com.dwolla.exception.DwollaAuthException
 import com.dwolla.http.Headers
 import com.dwolla.http.JsonBody
 import com.dwolla.http.Query
-import com.dwolla.resource.fundingsources.FundingSource
-import com.dwolla.resource.fundingsources.FundingSourceBalance
-import com.dwolla.resource.fundingsources.FundingSources
-import com.dwolla.resource.fundingsources.MicroDeposits
-import com.dwolla.resource.fundingsources.MicroDepositsVerified
+import com.dwolla.resource.fundingsources.* // ktlint-disable no-wildcard-imports
 import com.dwolla.util.Headers.Companion.IDEMPOTENCY_KEY
 import com.dwolla.util.Paths
 import com.dwolla.util.Paths.Companion.BALANCE

@@ -4,7 +4,7 @@ import com.dwolla.Dwolla
 import com.dwolla.TokenResponse
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TokenManagerTest {

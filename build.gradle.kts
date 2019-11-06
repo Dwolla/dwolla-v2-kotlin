@@ -34,9 +34,12 @@ dependencies {
     implementation(group = "net.dongliu", name = "gson-java8-datatype", version = "1.1.0")
 
     // Testing
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    // testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("io.mockk:mockk:1.9.3")
+
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+    testRuntime("org.junit.platform:junit-platform-runner:1.5.2")
 }
 
 publishing {
@@ -51,5 +54,12 @@ publishing {
             name = "dwolla-v2-kotlin"
             url = uri("file://$buildDir/repo")
         }
+    }
+}
+
+tasks.test {
+    useJUnitPlatform {
+        if (project.hasProperty("jUnitExcludeTags"))
+            excludeTags(project.property("jUnitExcludeTags") as String)
     }
 }
