@@ -39,7 +39,7 @@ class UrlBuilderTest {
     }
 
     @Test fun `throws exception if ILLEGAL url`() {
-        val p1 = "https://foo.bar"
+        val p1 = "${client.environment.apiUrl}.foo.bar"
 
         assertFailsWith(IllegalArgumentException::class, "should not build url not starting with apiUrl") {
             urlBuilder.buildUrl(p1)
