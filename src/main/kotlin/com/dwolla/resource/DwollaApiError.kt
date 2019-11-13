@@ -1,6 +1,6 @@
 package com.dwolla.resource
 
-data class DwollaError(
+data class DwollaApiError(
     @JvmField val _links: Links,
     @JvmField val code: String,
     @JvmField val message: String,

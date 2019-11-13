@@ -130,10 +130,11 @@ As of now, a subset of the Dwolla API has high-level methods available:
 
 Requests made with Dwolla V2 Kotlin throw two types of exceptions:
 
-- `DwollaApiException`: Thrown when a request is unsuccessful. This could occur for a variety of reasons such as
-  invalid request parameters. Details can be found in the exception's `DwollaError` object.
-- `DwollaAuthException`: Thrown when an error occurs obtaining a new token. You should not encounter this exception
-  unless your `Dwolla` key and/or secret is incorrect.
+- `DwollaApiException`: Thrown when an API request is unsuccessful. This could occur for a variety of reasons such as
+  invalid request parameters. Details can be found in the exception's `error (DwollaApiError)` object.
+- `DwollaAuthException`: Thrown when an error occurs obtaining authenticating with the API. You should not encounter
+  this exception unless your `Dwolla` key and/or secret is incorrect. Details can be found in the exception's
+  `error (DwollaAuthError)` object.
 
 #### Kotlin
 
@@ -173,7 +174,7 @@ try {
 
 ## Feedback
 
-If you have any feedback feel free to reach out to us or
+If you have any feedback please [reach out](https://discuss.dwolla.com/) to us or
 [create an issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Changelog
