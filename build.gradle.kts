@@ -1,9 +1,9 @@
 group = "com.dwolla"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0-pre1"
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
-    id("org.jetbrains.kotlin.jvm").version("1.3.21")
+    id("org.jetbrains.kotlin.jvm").version("1.3.50")
     id("java-library")
     id("maven-publish")
     id("org.jlleitschuh.gradle.ktlint").version("8.0.0")
@@ -26,12 +26,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Fuel HTTP client
-    implementation(group = "com.github.kittinunf.fuel", name = "fuel", version = "-SNAPSHOT")
-    implementation(group = "com.github.kittinunf.fuel", name = "fuel-coroutines", version = "-SNAPSHOT")
+    implementation(group = "com.github.kittinunf.fuel", name = "fuel", version = "2.2.1")
+    implementation(group = "com.github.kittinunf.fuel", name = "fuel-coroutines", version = "2.2.1")
 
     // GSON
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
-    implementation("net.dongliu:gson-java8-datatype:1.1.0")
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
+    implementation(group = "net.dongliu", name = "gson-java8-datatype", version = "1.1.0")
 
     // Testing
     testImplementation("org.jetbrains.kotlin:kotlin-test")
