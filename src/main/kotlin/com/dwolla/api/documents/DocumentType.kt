@@ -2,7 +2,7 @@ package com.dwolla.api.documents
 
 import com.google.gson.annotations.SerializedName
 
-enum class DocumentType(val value: String) {
+enum class DocumentType(@JvmField val value: String) {
     @SerializedName("passport")
     PASSPORT("passport"),
 

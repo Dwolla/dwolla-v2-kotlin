@@ -5,4 +5,8 @@ data class EmbeddedError(
     @JvmField val code: String,
     @JvmField val message: String,
     @JvmField val path: String
-) : HalResource(_links)
+) : HalResource() {
+    override fun getLinks(): Links {
+        return _links
+    }
+}

@@ -2,7 +2,7 @@ package com.dwolla.api.customers
 
 import com.google.gson.annotations.SerializedName
 
-enum class CustomerStatus(val value: String) {
+enum class CustomerStatus(@JvmField val value: String) {
     @SerializedName("unverified")
     UNVERIFIED("unverified"),
 

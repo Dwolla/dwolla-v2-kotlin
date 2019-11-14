@@ -8,4 +8,8 @@ data class BusinessClassification(
     @JvmField val _embedded: EmbeddedIndustryClassifications,
     @JvmField val id: String,
     @JvmField val name: String
-) : HalResource(_links)
+) : HalResource() {
+    override fun getLinks(): Links {
+        return _links
+    }
+}

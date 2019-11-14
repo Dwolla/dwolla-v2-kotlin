@@ -7,4 +7,8 @@ data class Documents(
     @JvmField val _links: Links,
     @JvmField val _embedded: EmbeddedDocuments,
     @JvmField val total: Int
-) : HalResource(_links)
+) : HalResource() {
+    override fun getLinks(): Links {
+        return _links
+    }
+}
