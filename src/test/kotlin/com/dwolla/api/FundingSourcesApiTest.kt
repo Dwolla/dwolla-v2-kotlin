@@ -31,6 +31,12 @@ class FundingSourcesApiTest : ApiTest() {
     }
 
     @Test
+    fun testListByAccount() {
+        val accountId = dwolla.root.get()._links.get("account")!!.href
+        assertResponse { dwolla.fundingSources.listByAccount(accountId) }
+    }
+
+    @Test
     fun testListByCustomer() {
         assertResponse { dwolla.fundingSources.listByCustomer(customer.id) }
     }

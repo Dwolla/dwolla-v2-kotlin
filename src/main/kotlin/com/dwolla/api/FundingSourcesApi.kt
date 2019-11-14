@@ -11,6 +11,7 @@ import com.dwolla.http.Query
 import com.dwolla.resource.fundingsources.* // ktlint-disable no-wildcard-imports
 import com.dwolla.util.Headers.Companion.IDEMPOTENCY_KEY
 import com.dwolla.util.Paths
+import com.dwolla.util.Paths.Companion.ACCOUNTS
 import com.dwolla.util.Paths.Companion.BALANCE
 import com.dwolla.util.Paths.Companion.CUSTOMERS
 import com.dwolla.util.Paths.Companion.FUNDING_SOURCES
@@ -65,6 +66,19 @@ class FundingSourcesApi(private val client: DwollaClient) {
     }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun listByAccount(
+        accountId: String,
+        removed: Boolean? = null
+    ): FundingSources {
+
+        return client.get(
+                FundingSources::class.java,
+                accountFundingSourcesUrl(accountId),
+                Query("removed" to removed)
+        ).body
+    }
+
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun listByCustomer(
         customerId: String,
         removed: Boolean? = null
@@ -76,12 +90,6 @@ class FundingSourcesApi(private val client: DwollaClient) {
             Query("removed" to removed)
         ).body
     }
-
-    // TODO
-    // @Throws(DwollaApiException::class, DwollaAuthException::class)
-    // fun listByAccount(removed: Boolean? = null) {
-    //     throw NotImplementedError()
-    // }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun update(
@@ -155,6 +163,10 @@ class FundingSourcesApi(private val client: DwollaClient) {
         return client.urlBuilder.buildUrl(FUNDING_SOURCES, id)
     }
 
+    private fun accountFundingSourcesUrl(accountId: String): String {
+        return client.urlBuilder.buildUrl(ACCOUNTS, accountId, FUNDING_SOURCES)
+    }
+
     private fun customerFundingSourcesUrl(customerId: String): String {
         return client.urlBuilder.buildUrl(CUSTOMERS, customerId, FUNDING_SOURCES)
     }
@@ -178,8 +190,3 @@ class FundingSourcesApi(private val client: DwollaClient) {
         )
     }
 }
-
-// dwolla.customers.listFundingSources("123")
-// dwolla.fundingSources.listByCustomer("123")
-// GET https://api.dwolla.com/funding-sources?customerId=123
-// GET https://api.dwolla.com/customers/123/funding-sources
