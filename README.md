@@ -41,7 +41,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1.0")
 }
 ```
 
