@@ -41,7 +41,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1.0")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1.1")
 }
 ```
 
@@ -179,6 +179,8 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
 
 ## Changelog
 
+- **0.1.1**
+  - Add serializer for `JsonBody` ([#13](/Dwolla/dwolla-v2-kotlin/pull/13))
 - **0.1.0**
   - Refactoring
     - `Client` => `Dwolla`
