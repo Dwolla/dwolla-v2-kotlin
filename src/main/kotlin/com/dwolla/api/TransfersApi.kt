@@ -109,9 +109,9 @@ internal class TransfersApi(@JvmField val client: DwollaClient) {
             Transfer::class.java,
             TRANSFERS,
             JsonBody(
-                "_links" to mapOf(
-                    "source" to mapOf("href" to fundingSourceUrl(sourceFundingSourceId)),
-                    "destination" to mapOf("href" to fundingSourceUrl(destinationFundingSourceId))
+                "_links" to JsonBody(
+                    "source" to JsonBody("href" to fundingSourceUrl(sourceFundingSourceId)),
+                    "destination" to JsonBody("href" to fundingSourceUrl(destinationFundingSourceId))
                 ),
                 "amount" to amount,
                 "metadata" to metadata,
