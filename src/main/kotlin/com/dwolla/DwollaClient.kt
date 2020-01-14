@@ -22,6 +22,7 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
     internal val fuelManager: FuelManager = FuelManager()
     internal val gson = GsonBuilder()
         .registerTypeAdapterFactory(GsonJava8TypeAdapterFactory())
+        .registerTypeAdapter(JsonBody::class.java, JsonBodyJsonSerializer())
         .setPrettyPrinting()
         .create()
 
