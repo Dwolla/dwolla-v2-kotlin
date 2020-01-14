@@ -16,14 +16,14 @@ jobs:
     - jdk: openjdk13
       script:
       - "./gradlew ktlintCheck"
-      - "./gradlew test"
+      - "./gradlew test --stacktrace"
     - jdk: openjdk8
       script:
       - "./gradlew ktlintCheck"
-      - "./gradlew test"
+      - "./gradlew test --stacktrace"
 script:
 - "./gradlew ktlintCheck"
-- "./gradlew test -PjUnitExcludeTags=api"
+- "./gradlew test -PjUnitExcludeTags=api --stacktrace"
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
