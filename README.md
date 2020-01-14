@@ -22,7 +22,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.1</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
