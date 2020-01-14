@@ -28,7 +28,7 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
 
     companion object {
         val ACCEPT_HEADER = mapOf("accept" to "application/vnd.dwolla.v1.hal+json")
-        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.1.0")
+        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.1.1")
     }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
