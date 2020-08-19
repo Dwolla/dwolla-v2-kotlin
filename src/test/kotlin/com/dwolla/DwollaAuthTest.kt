@@ -20,7 +20,7 @@ class DwollaAuthTest {
         val auth = DwollaAuth(dwolla, redirectUri = redirectUri, scope = scope)
 
         assertEquals(
-            "${dwolla.getEnvironment().authBaseUrl}?response_type=code&client_id=$clientId&redirect_uri=https%3A%2F%2Fmy.site%2Fdwolla_callback&scope=my+scope",
+            "${dwolla.getEnvironment().authBaseUrl()}?response_type=code&client_id=$clientId&redirect_uri=https%3A%2F%2Fmy.site%2Fdwolla_callback&scope=my+scope",
             auth.url
         )
     }
@@ -29,7 +29,7 @@ class DwollaAuthTest {
         val auth = DwollaAuth(dwolla, redirectUri = redirectUri, state = state, scope = scope)
 
         assertEquals(
-            "${dwolla.getEnvironment().authBaseUrl}?response_type=code&client_id=$clientId&redirect_uri=https%3A%2F%2Fmy.site%2Fdwolla_callback&state=my+state&scope=my+scope",
+            "${dwolla.getEnvironment().authBaseUrl()}?response_type=code&client_id=$clientId&redirect_uri=https%3A%2F%2Fmy.site%2Fdwolla_callback&state=my+state&scope=my+scope",
             auth.url
         )
     }

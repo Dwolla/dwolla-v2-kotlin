@@ -15,7 +15,7 @@ import com.github.kittinunf.fuel.core.extensions.jsonBody
 import com.google.gson.GsonBuilder
 import net.dongliu.gson.GsonJava8TypeAdapterFactory
 
-abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
+abstract class DwollaClient(@JvmField val environment: Environment) {
 
     protected abstract fun getAccessToken(): String
 
@@ -304,7 +304,7 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
     }
 
     // NOTE: for testing purposes...
-    internal fun getEnvironment(): DwollaEnvironment {
+    internal fun getEnvironment(): Environment {
         return environment
     }
 }
