@@ -28,7 +28,7 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
 
     companion object {
         val ACCEPT_HEADER = mapOf("accept" to "application/vnd.dwolla.v1.hal+json")
-        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.1.1")
+        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.1.2")
     }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
@@ -229,6 +229,18 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
     internal fun <T : Any> postFollow(deserializeAs: Class<T>, path: String, body: MultipartBody, headers: Headers): Response<T> {
         val url = urlBuilder.buildUrl(path)
         return follow(deserializeAs, makeRequest(fuelManager.upload(url).add(*body.list.toTypedArray()).header(headers.map)))
+    }
+
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun delete(path: String): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return makeRequest(fuelManager.delete(url))
+    }
+
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun delete(path: String, headers: Headers): Response<String> {
+        val url = urlBuilder.buildUrl(path)
+        return makeRequest(fuelManager.delete(url).header(headers.map))
     }
 
     private fun follow(response: Response<String>): Response<String> {
