@@ -8,4 +8,4 @@ open class DwollaApiException(
     @JvmField val statusCode: Int,
     @JvmField val headers: Headers,
     @JvmField val error: DwollaApiError
-) : Exception(message)
+) : DwollaException(message)

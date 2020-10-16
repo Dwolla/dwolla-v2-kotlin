@@ -128,13 +128,19 @@ As of now, a subset of the Dwolla API has high-level methods available:
 
 ## Handling errors
 
-Requests made with Dwolla V2 Kotlin throw two types of exceptions:
+Dwolla V2 Kotlin has 3 types of exceptions:
 
-- `DwollaApiException`: Thrown when an API request is unsuccessful. This could occur for a variety of reasons such as
-  invalid request parameters. Details can be found in the exception's `error (DwollaApiError)` object.
+```
+DwollaException
+├── DwollaApiException
+└── DwollaAuthException
+```
+
+- `DwollaApiException`: Thrown when the Dwolla API returns an error response. This could occur
+  for a variety of reasons such as invalid request parameters.
 - `DwollaAuthException`: Thrown when an error occurs obtaining authenticating with the API. You should not encounter
-  this exception unless your `Dwolla` key and/or secret is incorrect. Details can be found in the exception's
-  `error (DwollaAuthError)` object.
+  this exception unless your `Dwolla` key/secret are incorrect.
+- `DwollaException`: The base class other exceptions inherit from.
 
 #### Kotlin
 
@@ -146,11 +152,14 @@ try {
     e.statusCode // Int
     e.headers // Headers
     e.error // DwollaError
-} catch (e: DwollaApiException) {
+} catch (e: DwollaAuthException) {
     e.message // String
     e.statusCode // Int
     e.headers // Headers
     e.error // OAuthError
+} catch (e: DwollaException) {
+    e.message // String
+    e.cause // Throwable?
 }
 ```
 
@@ -169,6 +178,9 @@ try {
     Integer statusCode = e.statusCode;
     Headers headers = e.headers;
     OAuthError error = e.error;
+} catch (DwollaAuthException e) {
+    String message = e.message;
+    Throwable cause = e.cause;
 }
 ```
 

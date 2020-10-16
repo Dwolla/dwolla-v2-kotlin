@@ -2,6 +2,7 @@ package com.dwolla
 
 import com.dwolla.exception.DwollaApiException
 import com.dwolla.exception.DwollaAuthException
+import com.dwolla.exception.DwollaException
 import com.dwolla.http.* // ktlint-disable no-wildcard-imports
 import com.dwolla.resource.DwollaApiError
 import com.dwolla.util.Deserializer
@@ -277,14 +278,19 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
         return result.third.fold(
             success = { res -> Response(result.second.statusCode, responseHeaders, res) },
             failure = { _ ->
-                val rawBody = result.second.data.toString(Charsets.UTF_8)
-                if (rawBody.isBlank() && result.second.statusCode == 401) {
-                    // for some reason we can't read the response body when a 401 is returned
+                try {
+                    val rawBody = result.second.data.toString(Charsets.UTF_8)
+                    if (rawBody.isBlank() && result.second.statusCode == 401) {
+                        // for some reason we can't read the response body when a 401 is returned
+                        val error = DwollaApiError(mapOf(), "", "", null)
+                        throw DwollaApiException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
+                    } else {
+                        val error = Deserializer(gson, DwollaApiError::class.java).deserialize(rawBody)
+                        throw DwollaApiException(rawBody, result.second.statusCode, responseHeaders, error)
+                    }
+                } catch (e: Exception) {
                     val error = DwollaApiError(mapOf(), "", "", null)
-                    throw DwollaApiException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
-                } else {
-                    val error = Deserializer(gson, DwollaApiError::class.java).deserialize(rawBody)
-                    throw DwollaApiException(rawBody, result.second.statusCode, responseHeaders, error)
+                    throw DwollaException("See stack trace for more details...", e)
                 }
             }
         )
