@@ -22,7 +22,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -41,7 +41,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.1.2")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.2.0")
 }
 ```
 
@@ -191,6 +191,9 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
 
 ## Changelog
 
+- **0.2.0**
+  - Add `DwollaException` base exception class
+  - Swallow and rethrow exceptions using `DwollaException`
 - **0.1.2**
   - Add `delete` methods to `DwollaClient`
 - **0.1.1**
