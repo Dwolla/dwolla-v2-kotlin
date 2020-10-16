@@ -4,7 +4,6 @@ import com.dwolla.api.* // ktlint-disable no-wildcard-imports
 import com.dwolla.exception.DwollaAuthException
 import com.dwolla.exception.DwollaException
 import com.dwolla.http.Headers
-import com.dwolla.resource.DwollaApiError
 import com.dwolla.resource.DwollaAuthError
 import com.dwolla.util.Deserializer
 import com.dwolla.util.TokenManager
