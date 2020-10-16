@@ -255,15 +255,23 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
     }
 
     private fun makeRequest(request: Request): Response<String> {
-        val preparedRequest = prepareRequest(request)
-        val result = preparedRequest.responseString()
-        return handleResponse(result)
+        try {
+            val preparedRequest = prepareRequest(request)
+            val result = preparedRequest.responseString()
+            return handleResponse(result)
+        } catch (e: Exception) {
+            throw DwollaException("See stack trace for more details...", e)
+        }
     }
 
     private fun <T : Any> makeRequest(deserializeAs: Class<T>, request: Request): Response<T> {
-        val preparedRequest = prepareRequest(request)
-        val result = preparedRequest.responseObject(Deserializer(gson, deserializeAs))
-        return handleResponse(result)
+        try {
+            val preparedRequest = prepareRequest(request)
+            val result = preparedRequest.responseObject(Deserializer(gson, deserializeAs))
+            return handleResponse(result)
+        } catch (e: Exception) {
+            throw DwollaException("See stack trace for more details...", e)
+        }
     }
 
     private fun prepareRequest(request: Request): Request {
@@ -278,19 +286,14 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
         return result.third.fold(
             success = { res -> Response(result.second.statusCode, responseHeaders, res) },
             failure = { _ ->
-                try {
-                    val rawBody = result.second.data.toString(Charsets.UTF_8)
-                    if (rawBody.isBlank() && result.second.statusCode == 401) {
-                        // for some reason we can't read the response body when a 401 is returned
-                        val error = DwollaApiError(mapOf(), "", "", null)
-                        throw DwollaApiException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
-                    } else {
-                        val error = Deserializer(gson, DwollaApiError::class.java).deserialize(rawBody)
-                        throw DwollaApiException(rawBody, result.second.statusCode, responseHeaders, error)
-                    }
-                } catch (e: Exception) {
+                val rawBody = result.second.data.toString(Charsets.UTF_8)
+                if (rawBody.isBlank() && result.second.statusCode == 401) {
+                    // for some reason we can't read the response body when a 401 is returned
                     val error = DwollaApiError(mapOf(), "", "", null)
-                    throw DwollaException("See stack trace for more details...", e)
+                    throw DwollaApiException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
+                } else {
+                    val error = Deserializer(gson, DwollaApiError::class.java).deserialize(rawBody)
+                    throw DwollaApiException(rawBody, result.second.statusCode, responseHeaders, error)
                 }
             }
         )

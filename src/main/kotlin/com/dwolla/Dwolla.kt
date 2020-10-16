@@ -2,7 +2,9 @@ package com.dwolla
 
 import com.dwolla.api.* // ktlint-disable no-wildcard-imports
 import com.dwolla.exception.DwollaAuthException
+import com.dwolla.exception.DwollaException
 import com.dwolla.http.Headers
+import com.dwolla.resource.DwollaApiError
 import com.dwolla.resource.DwollaAuthError
 import com.dwolla.util.Deserializer
 import com.dwolla.util.TokenManager
@@ -64,27 +66,31 @@ class Dwolla(
     }
 
     internal fun fetchToken(vararg params: Pair<String, String?>): TokenResponse {
-        val result = fuelManager
-            .post(environment.tokenUrl, params.filterNot { (_, v) -> v.isNullOrBlank() }.toList())
-            .header(USER_AGENT_HEADER)
-            .authentication()
-            .basic(key, secret)
-            .responseObject(Deserializer(gson, TokenResponse::class.java))
-        val responseHeaders = Headers(*result.second.headers.map { h -> h.key to h.value.first() }.toTypedArray())
-        return result.third.fold(
-            success = { res -> res },
-            failure = {
-                val rawBody = result.second.data.toString(Charsets.UTF_8)
-                if (rawBody.isBlank() && result.second.statusCode == 401) {
-                    // for some reason we can't read the response body when a 401 is returned
-                    val error = DwollaAuthError("", null, null)
-                    throw DwollaAuthException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
-                } else {
-                    val error = Deserializer(gson, DwollaAuthError::class.java).deserialize(rawBody)
-                    throw DwollaAuthException(rawBody, result.second.statusCode, responseHeaders, error)
-                }
-            }
-        )
+        try {
+            val result = fuelManager
+                    .post(environment.tokenUrl, params.filterNot { (_, v) -> v.isNullOrBlank() }.toList())
+                    .header(USER_AGENT_HEADER)
+                    .authentication()
+                    .basic(key, secret)
+                    .responseObject(Deserializer(gson, TokenResponse::class.java))
+            val responseHeaders = Headers(*result.second.headers.map { h -> h.key to h.value.first() }.toTypedArray())
+            return result.third.fold(
+                    success = { res -> res },
+                    failure = {
+                        val rawBody = result.second.data.toString(Charsets.UTF_8)
+                        if (rawBody.isBlank() && result.second.statusCode == 401) {
+                            // for some reason we can't read the response body when a 401 is returned
+                            val error = DwollaAuthError("", null, null)
+                            throw DwollaAuthException("401 Unauthorized", result.second.statusCode, responseHeaders, error)
+                        } else {
+                            val error = Deserializer(gson, DwollaAuthError::class.java).deserialize(rawBody)
+                            throw DwollaAuthException(rawBody, result.second.statusCode, responseHeaders, error)
+                        }
+                    }
+            )
+        } catch (e: Exception) {
+            throw DwollaException("See stack trace for more details...", e)
+        }
     }
 
     // for testing purposes
