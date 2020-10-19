@@ -1,35 +1,42 @@
 language: java
+
 install: true
+
 jdk:
-#- openjdk13 # see jobs.include
-- openjdk12
-- openjdk11
-- openjdk10
-- openjdk9
-#- openjdk8 # see jobs.include
-- oraclejdk13
-- oraclejdk12
-- oraclejdk11
-- oraclejdk9
+  #- openjdk13 # see jobs.include
+  - openjdk12
+  - openjdk11
+  - openjdk10
+  - openjdk9
+  #- openjdk8 # see jobs.include
+  - oraclejdk13
+  - oraclejdk12
+  - oraclejdk11
+  - oraclejdk9
+
 jobs:
   include:
     - jdk: openjdk13
       script:
-      - "./gradlew ktlintCheck"
-      - "./gradlew test --stacktrace"
+        - "./gradlew ktlintCheck"
+        - "./gradlew test --stacktrace"
     - jdk: openjdk8
       script:
-      - "./gradlew ktlintCheck"
-      - "./gradlew test --stacktrace"
+        - "./gradlew ktlintCheck"
+        - "./gradlew test --stacktrace"
+
 script:
-- "./gradlew ktlintCheck"
-- "./gradlew test -PjUnitExcludeTags=api --stacktrace"
+  - "./gradlew ktlintCheck"
+  - "./gradlew test -PjUnitExcludeTags=api --stacktrace"
+
 before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+
 env:
   secure: btlewfZncfLs+aYQ8Ccdp2QDAqspV9fS7qqW7ZfRtrLq4ZhgxxaK5SNXXGYFHmovdvVWwKjTAGskV8DbJKuSO6II9HeZDLRkN/J1Qco6hUTl44YhDaodxF9gzC/6tJE24Kd6+mn4dT8Ca+LCpNZnlYbMWqzRibjBPBCWwDcqB6o07GhlQHHsTaGs4d0FvNEvw6tbq51cNKHJfc+s+WPZs3sX1efHa+k5uqJCkVQakhZOX9jMBrzuRcnyY62Fhrr5Vj+xQgHOCY8P/Na+hHNQdFyuiBMFlK7z4Jjs4Xd7iLzpxgGD6WNjjba2XEZrC9dTzn+gCctfoX4Fz8VvPs+ToZHDmZLnJTgp7oKKFJqAIbIjxHG5pi8OOCLJM8hPT5a08HN1M0DSvg6FhiCOX4ya3FdGeB+El4UPFahh3zcblhoAsk8qVUK9y+Jh1bNViviGUxk7tZ9J+y6XmMemnA1OJBeufBiJrFTrkv8dfQJAtIr7n/JKXnM4v6LTcknIQNeqSVfvPCdajjrcDqechsDTb4MGKoWHLumxQxqwp+knBhL6Dy0uR0nsQVJCv6W0pAtEr18DqR+yJlJ1WpUHUneh9XnzrfmAh5F9rcGfyw1qvUh3yn6EK8uLGuk3I7fstgMghLu5lQd513GjLgV75SwzL1WXPRgt1iioM9ayuzRusBU=
