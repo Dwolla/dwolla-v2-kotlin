@@ -259,6 +259,8 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
             val preparedRequest = prepareRequest(request)
             val result = preparedRequest.responseString()
             return handleResponse(result)
+        } catch (e: DwollaException) {
+            throw e
         } catch (e: Exception) {
             throw DwollaException("See stack trace for more details...", e)
         }
@@ -269,6 +271,8 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
             val preparedRequest = prepareRequest(request)
             val result = preparedRequest.responseObject(Deserializer(gson, deserializeAs))
             return handleResponse(result)
+        } catch (e: DwollaException) {
+            throw e
         } catch (e: Exception) {
             throw DwollaException("See stack trace for more details...", e)
         }
