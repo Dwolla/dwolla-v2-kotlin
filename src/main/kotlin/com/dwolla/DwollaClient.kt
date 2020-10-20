@@ -2,6 +2,7 @@ package com.dwolla
 
 import com.dwolla.exception.DwollaApiException
 import com.dwolla.exception.DwollaAuthException
+import com.dwolla.exception.DwollaException
 import com.dwolla.http.* // ktlint-disable no-wildcard-imports
 import com.dwolla.resource.DwollaApiError
 import com.dwolla.util.Deserializer
@@ -28,7 +29,7 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
 
     companion object {
         val ACCEPT_HEADER = mapOf("accept" to "application/vnd.dwolla.v1.hal+json")
-        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.1.2")
+        val USER_AGENT_HEADER = mapOf("user-agent" to "dwolla-v2-kotlin/0.2.0")
     }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
@@ -254,15 +255,27 @@ abstract class DwollaClient(@JvmField val environment: DwollaEnvironment) {
     }
 
     private fun makeRequest(request: Request): Response<String> {
-        val preparedRequest = prepareRequest(request)
-        val result = preparedRequest.responseString()
-        return handleResponse(result)
+        try {
+            val preparedRequest = prepareRequest(request)
+            val result = preparedRequest.responseString()
+            return handleResponse(result)
+        } catch (e: DwollaException) {
+            throw e
+        } catch (e: Exception) {
+            throw DwollaException("See stack trace for more details...", e)
+        }
     }
 
     private fun <T : Any> makeRequest(deserializeAs: Class<T>, request: Request): Response<T> {
-        val preparedRequest = prepareRequest(request)
-        val result = preparedRequest.responseObject(Deserializer(gson, deserializeAs))
-        return handleResponse(result)
+        try {
+            val preparedRequest = prepareRequest(request)
+            val result = preparedRequest.responseObject(Deserializer(gson, deserializeAs))
+            return handleResponse(result)
+        } catch (e: DwollaException) {
+            throw e
+        } catch (e: Exception) {
+            throw DwollaException("See stack trace for more details...", e)
+        }
     }
 
     private fun prepareRequest(request: Request): Request {
