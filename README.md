@@ -31,10 +31,10 @@ Add this to your project's POM:
 Add this to your project's build file:
 
 ```groovy
-repositories {
-    // ...
-    maven(url = "https://jitpack.io") {
-        name = "jitpack"
+allprojects { // NOT buildscript
+    repositories {
+        // ...
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
