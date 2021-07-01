@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
 class Dwolla(
     @JvmField val key: String,
     @JvmField internal val secret: String,
-    environment: DwollaEnvironment = DwollaEnvironment.PRODUCTION
+    environment: Environment = DwollaEnvironment.PRODUCTION
 ) : DwollaClient(environment) {
 
     @JvmField val accounts = AccountsApi(this)
