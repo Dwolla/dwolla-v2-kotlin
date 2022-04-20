@@ -18,7 +18,8 @@ data class FundingSource(
     @JvmField val channels: List<FundingSourceChannel>,
     @JvmField val bankName: String?,
     @JvmField val iavAccountHolders: IavAccountHolders?,
-    @JvmField val fingerprint: String?
+    @JvmField val fingerprint: String?,
+    @JvmField val verified: Boolean
 ) : HalResource() {
     override fun getLinks(): Links {
         return _links
