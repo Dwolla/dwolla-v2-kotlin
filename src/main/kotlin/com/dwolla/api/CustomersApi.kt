@@ -288,7 +288,8 @@ class CustomersApi(private val client: DwollaClient) {
         postalCode: String,
         email: String? = null,
         phone: String? = null,
-        ipAddress: String? = null
+        ipAddress: String? = null,
+        ssn: String
     ): Customer {
 
         return client.post(Customer::class.java, customerUrl(id), JsonBody(
@@ -299,7 +300,8 @@ class CustomersApi(private val client: DwollaClient) {
             "state" to state,
             "postalCode" to postalCode,
             "phone" to phone,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "ssn" to ssn
         )).body
     }
 
