@@ -114,7 +114,8 @@ class CustomersApiTest : ApiTest() {
                 address1 = "123 main st.",
                 city = "des moines",
                 state = USState.IA,
-                postalCode = "50309"
+                postalCode = "50309",
+                ssn ="1234567890"
             )
         }
     }
