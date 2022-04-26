@@ -190,7 +190,8 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
 [create an issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Changelog
-
+- **0.3.0**
+  - Updated `CutomerApi` to include SSN when upgrading a customer to verified
 - **0.2.0**
   - Add `DwollaException` base exception class
   - Swallow and rethrow exceptions using `DwollaException`
