@@ -22,7 +22,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
@@ -41,7 +41,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.3.0")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.4.0")
 }
 ```
 
@@ -94,6 +94,7 @@ for information on supported endpoints, request parameters, and response paramet
 - `dwolla.delete`
 
 Examples:
+
 - [Kotlin](docs/low_level_examples_kotlin.md)
 - [Java](docs/low_level_examples_java.md)
 
@@ -190,6 +191,10 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
 [create an issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
 
 ## Changelog
+
+- **0.4.0**
+  - Updated `src/main/kotlin/com/dwolla/resource/documents/DocumentFailureReason.kt` to match failure reasons in [API Reference](https://developers.dwolla.com/api-reference/documents)
+  - Update `gradle` from 5.3.1 to 7.3.1
 - **0.3.0**
   - Updated `CutomerApi` to include SSN when upgrading a customer to verified
 - **0.2.0**
