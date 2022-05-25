@@ -3,21 +3,36 @@ package com.dwolla.resource.documents
 import com.google.gson.annotations.SerializedName
 
 enum class DocumentFailureReason(@JvmField val value: String) {
-    @SerializedName("ScanNotReadable")
-    SCAN_NOT_READABLE("ScanNotReadable"),
+    @SerializedName("BusinessDocNotSupported")
+    BUSINESS_DOC_NOT_SUPPORTED("BusinessDocNotSupported"),
 
-    @SerializedName("ScanNotUploaded")
-    SCAN_NOT_UPLOADED("ScanNotUploaded"),
+    @SerializedName("BusinessNameMismatch")
+    BUSINESS_NAME_MISMATCH("BusinessNameMismatch"),
 
-    @SerializedName("ScanIdTypeNotSupported")
-    SCAN_ID_TYPE_NOT_SUPPORTED("ScanIdTypeNotSupported"),
+    @SerializedName("BusinessTypeMismatch")
+    BUSINESS_TYPE_MISMATCH("BusinessTypeMismatch"),
 
-    @SerializedName("ScanNameMismatch")
-    SCAN_NAME_MISMATCH("ScanNameMismatch"),
+    @SerializedName("ScanDobMismatch")
+    SCAN_DOB_MISMATCH("ScanDobMismatch"),
 
     @SerializedName("ScanFailedOther")
     SCAN_FAILED_OTHER("ScanFailedOther"),
 
-    @SerializedName("FailedOther")
-    FAILED_OTHER("FailedOther")
+    @SerializedName("ScanIdExpired")
+    SCAN_ID_EXPIRED("ScanIdExpired"),
+
+    @SerializedName("ScanIdTypeNotSupported")
+    SCAN_ID_TYPE_NOT_SUPPORTED("ScanIdTypeNotSupported"),
+
+    @SerializedName("ScanIdUnrecognized")
+    SCAN_ID_UNRECOGNIZED("ScanIdUnrecognized"),
+
+    @SerializedName("ScanNameMismatch")
+    SCAN_NAME_MISMATCH("ScanNameMismatch"),
+
+    @SerializedName("ScanNotReadable")
+    SCAN_NOT_READABLE("ScanNotReadable"),
+
+    @SerializedName("ScanNotUploaded")
+    SCAN_NOT_UPLOADED("ScanNotUploaded")
 }
