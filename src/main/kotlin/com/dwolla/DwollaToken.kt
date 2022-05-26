@@ -3,7 +3,7 @@ package com.dwolla
 import com.dwolla.api.* // ktlint-disable no-wildcard-imports
 
 class DwollaToken(
-    environment: DwollaEnvironment,
+    environment: Environment,
     @JvmField val accessToken: String,
     @JvmField val refreshToken: String? = null,
     @JvmField val expiresIn: Long? = null,

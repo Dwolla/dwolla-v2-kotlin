@@ -14,7 +14,7 @@ class UrlBuilderTest {
 
         val url = urlBuilder.buildUrl(p1)
 
-        assertEquals("${client.environment.apiBaseUrl}/$p1", url)
+        assertEquals("${client.environment.apiBaseUrl()}/$p1", url)
     }
 
     @Test fun `builds url with slashed path`() {
@@ -22,13 +22,13 @@ class UrlBuilderTest {
 
         val url = urlBuilder.buildUrl(p1)
 
-        assertEquals("${client.environment.apiBaseUrl}$p1", url)
+        assertEquals("${client.environment.apiBaseUrl()}$p1", url)
     }
 
     @Test fun `ignores anything before last absolute uri`() {
-        val p1 = client.environment.apiBaseUrl
+        val p1 = client.environment.apiBaseUrl()
         val p2 = "abc"
-        val p3 = client.environment.apiBaseUrl
+        val p3 = client.environment.apiBaseUrl()
         val p4 = "123"
         val p5 = "/456"
         val p6 = "789"
@@ -39,7 +39,7 @@ class UrlBuilderTest {
     }
 
     @Test fun `throws exception if ILLEGAL url`() {
-        val p1 = "${client.environment.apiBaseUrl}.foo.bar"
+        val p1 = "${client.environment.apiBaseUrl()}.foo.bar"
 
         assertFailsWith(IllegalArgumentException::class, "should not build url not starting with apiUrl") {
             urlBuilder.buildUrl(p1)
