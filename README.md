@@ -22,7 +22,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -41,7 +41,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.4.0")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.5.0")
 }
 ```
 
