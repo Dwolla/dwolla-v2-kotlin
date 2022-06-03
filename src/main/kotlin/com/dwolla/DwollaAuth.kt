@@ -10,7 +10,7 @@ class DwollaAuth(
     scope: String // TODO: remove eventually
 ) {
 
-    @JvmField val url = "${dwolla.getEnvironment().authBaseUrl}?${encodeWwwForm(
+    @JvmField val url = "${dwolla.getEnvironment().authBaseUrl()}?${encodeWwwForm(
         "response_type" to "code",
         "client_id" to dwolla.getClientId(),
         "redirect_uri" to redirectUri,

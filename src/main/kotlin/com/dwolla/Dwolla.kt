@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName
 class Dwolla(
     @JvmField val key: String,
     @JvmField internal val secret: String,
-    environment: DwollaEnvironment = DwollaEnvironment.PRODUCTION
+    environment: Environment = DwollaEnvironment.PRODUCTION
 ) : DwollaClient(environment) {
 
     @JvmField val accounts = AccountsApi(this)
@@ -67,7 +67,7 @@ class Dwolla(
     internal fun fetchToken(vararg params: Pair<String, String?>): TokenResponse {
         try {
             val result = fuelManager
-                .post(environment.tokenUrl, params.filterNot { (_, v) -> v.isNullOrBlank() }.toList())
+                .post(environment.tokenUrl(), params.filterNot { (_, v) -> v.isNullOrBlank() }.toList())
                 .header(USER_AGENT_HEADER)
                 .authentication()
                 .basic(key, secret)
