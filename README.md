@@ -111,15 +111,15 @@ you would typically refer to the docs for in the SDK itself such as endpoints, r
 
 As of now, a subset of the Dwolla API has high-level methods available:
 
-- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/AccountsApi.kt)
-- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
-- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
-- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
-- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
-- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
-- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
-- [x] [`dwolla.iavTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/IavTokensApi.kt)
-- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/master/src/main/kotlin/com/dwolla/api/RootApi.kt)
+- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/AccountsApi.kt)
+- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
+- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
+- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
+- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
+- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
+- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
+- [x] [`dwolla.iavTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/IavTokensApi.kt)
+- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/RootApi.kt)
 - [ ] `dwolla.events.*`
 - [ ] `dwolla.labels.*`
 - [ ] `dwolla.massPayments.*`
