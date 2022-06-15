@@ -48,7 +48,8 @@ class CustomersApi(private val client: DwollaClient) {
         email: String,
         businessName: String? = null,
         ipAddress: String? = null,
-        idempotencyKey: String? = null
+        idempotencyKey: String? = null,
+        correlationId: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
@@ -57,7 +58,8 @@ class CustomersApi(private val client: DwollaClient) {
             "email" to email,
             "type" to "receive-only",
             "businessName" to businessName,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "correlationId" to correlationId
         ), idempotencyKey)
     }
 
@@ -69,7 +71,8 @@ class CustomersApi(private val client: DwollaClient) {
         email: String,
         businessName: String? = null,
         ipAddress: String? = null,
-        idempotencyKey: String? = null
+        idempotencyKey: String? = null,
+        correlationId: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
@@ -77,7 +80,8 @@ class CustomersApi(private val client: DwollaClient) {
             "lastName" to lastName,
             "email" to email,
             "businessName" to businessName,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "correlationId" to correlationId
         ), idempotencyKey)
     }
 
@@ -96,7 +100,8 @@ class CustomersApi(private val client: DwollaClient) {
         ssn: String,
         phone: String? = null,
         ipAddress: String? = null,
-        idempotencyKey: String? = null
+        idempotencyKey: String? = null,
+        correlationId: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
@@ -112,7 +117,8 @@ class CustomersApi(private val client: DwollaClient) {
             "dateOfBirth" to dateOfBirth,
             "ssn" to ssn,
             "phone" to phone,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "correlationId" to correlationId
         ), idempotencyKey)
     }
 
@@ -136,7 +142,8 @@ class CustomersApi(private val client: DwollaClient) {
         ein: String? = null,
         doingBusinessAs: String? = null,
         ipAddress: String? = null,
-        idempotencyKey: String? = null
+        idempotencyKey: String? = null,
+        correlationId: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
@@ -158,7 +165,8 @@ class CustomersApi(private val client: DwollaClient) {
             "phone" to phone,
             "ein" to ein,
             "doingBusinessAs" to doingBusinessAs,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "correlationId" to correlationId
         ), idempotencyKey)
     }
 
@@ -182,7 +190,8 @@ class CustomersApi(private val client: DwollaClient) {
         phone: String? = null,
         doingBusinessAs: String? = null,
         ipAddress: String? = null,
-        idempotencyKey: String? = null
+        idempotencyKey: String? = null,
+        correlationId: String? = null
     ): Customer {
 
         return createCustomer(JsonBody(
@@ -203,7 +212,8 @@ class CustomersApi(private val client: DwollaClient) {
             "website" to website,
             "phone" to phone,
             "doingBusinessAs" to doingBusinessAs,
-            "ipAddress" to ipAddress
+            "ipAddress" to ipAddress,
+            "correlationId" to correlationId
         ), idempotencyKey)
     }
 
