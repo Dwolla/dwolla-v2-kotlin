@@ -12,6 +12,9 @@ enum class DocumentFailureReason(@JvmField val value: String) {
     @SerializedName("BusinessTypeMismatch")
     BUSINESS_TYPE_MISMATCH("BusinessTypeMismatch"),
 
+    @SerializedName("ForeignPassportNotAllowed")
+    FOREIGN_PASSPORT_NOT_ALLOWED("ForeignPassportNotAllowed"),
+
     @SerializedName("ScanDobMismatch")
     SCAN_DOB_MISMATCH("ScanDobMismatch"),
 
