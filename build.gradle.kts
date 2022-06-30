@@ -30,7 +30,7 @@ dependencies {
     implementation(group = "com.github.kittinunf.fuel", name = "fuel-coroutines", version = "2.2.1")
 
     // GSON
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.9.0")
     implementation(group = "net.dongliu", name = "gson-java8-datatype", version = "1.1.0")
 
     // Testing
