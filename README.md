@@ -192,6 +192,9 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
 
 ## Changelog
 
+- **0.6.0**
+  - Add `correlationId` optional argument when creating a new customer
+  - Add `ForeignPassportNotAllowed` document failure reason. This is thrown when a foreign (non-U.S.) passport is uploaded for a personal Verified Customer.
 - **0.4.0**
   - Updated `src/main/kotlin/com/dwolla/resource/documents/DocumentFailureReason.kt` to match failure reasons in [API Reference](https://developers.dwolla.com/api-reference/documents)
   - Update `gradle` from 5.3.1 to 7.3.1
