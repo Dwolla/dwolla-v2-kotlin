@@ -2,21 +2,20 @@
 
 This repository contains the source code for Dwolla's Kotlin-based SDK, which allows developers to interact with Dwolla's server-side API via a Kotlin or JAVA API. Any action that can be performed via an HTTP request can be made using this SDK when executed within a server-side environment.
 
+**Dwolla’s Kotlin SDK is intended for server-side use and should not be used by itself when developing client-side Android apps. Instead, this SDK should be installed on your web server with your Android app proxying any interaction with Dwolla through it.**
+
 ### Table of Contents
 
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Initialization](#initialization)
 - [Making Requests](#making-requests)
-  - [High-level Requests](#high-level-requests)
-  - [Low-level Requests](#low-level-requests)
+  - [High-Level Requests](#high-level-requests)
+  - [Low-Level Requests](#low-level-requests)
 - [Handling Errors](#handling-errors)
 - [Changelog](#changelog)
 - [Community](#community)
 - [Additional Resources](#additional-resources)
-
----
-
 ## Getting Started
 
 ### Installation
@@ -100,9 +99,9 @@ Dwolla dwolla = new Dwolla(
 
 ## Making Requests
 
-The Dwolla client provides low-level and high-level methods for interacting with the Dwolla API.
+The Dwolla client provides high-level and low-level methods for interacting with the Dwolla API.
 
-### High-level Requests
+### High-Level Requests
 
 > The best SDKs are not just simple; they’re intuitive. Developers would rather stay in the flow of their code than
 > troubleshoot back-and-forth trying to figure out someone else’s code. Luckily, statically typed languages let us
@@ -115,14 +114,14 @@ you would typically refer to the docs for in the SDK itself such as endpoints, r
 
 As of now, a subset of the Dwolla API has high-level methods available:
 
-- [x] [`dwolla.accounts.*`](docs/snippets/high_level_requests/accounts.md)
-- [x] [`dwolla.beneficialOwners.*`](docs/snippets/high_level_requests/beneficial-owners.md)
-- [x] [`dwolla.businessClassifications.*`](docs/snippets/high_level_requests/business-classifications.md)
-- [x] [`dwolla.customers.*`](docs/snippets/high_level_requests/customers.md)
-- [x] [`dwolla.documents.*`](docs/snippets/high_level_requests/documents.md)
-- [x] [`dwolla.fundingSources.*`](docs/snippets/high_level_requests/funding-sources.md)
-- [x] [`dwolla.fundingSourcesTokens.*`](docs/snippets/high_level_requests/funding-sources-tokens.md)
-- [x] [`dwolla.root.*`](docs/snippets/high_level_requests/root.md)
+- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/accounts.md)
+- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/beneficial-owners.md)
+- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/business-classifications.md)
+- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/customers.md)
+- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/documents.md)
+- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources.md)
+- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources-tokens.md)
+- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/root.md)
 - [ ] `dwolla.events.*`
 - [ ] `dwolla.labels.*`
 - [ ] `dwolla.massPayments.*`
@@ -130,7 +129,7 @@ As of now, a subset of the Dwolla API has high-level methods available:
 - [ ] `dwolla.webhooks.*`
 - [ ] `dwolla.webhookSubscriptions.*`
 
-### Low-level Requests
+### Low-Level Requests
 
 To make low-level HTTP requests, you can use the `get()`, `post()`, and `delete()` methods.
 
@@ -245,7 +244,7 @@ try {
 ## Community
 
 * If you have any feedback, please reach out to us on [our forums](https://discuss.dwolla.com/) or by [creating a GitHub issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues/new).
-* If you would like to contribute to this library, bug reports and pull requests are welcome on GitHub at https://github.com/Dwolla/dwolla-v2-kotlin.
+* If you would like to contribute to this library, [bug reports](https://github.com/Dwolla/dwolla-v2-kotlin/issues) and [pull requests](https://github.com/Dwolla/dwolla-v2-kotlin/pulls) are always appreciated!
 
 ## Additional Resources
 
@@ -257,7 +256,7 @@ To learn more about Dwolla and how to integrate our product with your applicatio
   * [Dwolla SDK for C#](https://github.com/Dwolla/dwolla-v2-csharp)
   * [Dwolla SDK for Node](https://github.com/Dwolla/dwolla-v2-node)
   * [Dwolla SDK for Python](https://github.com/Dwolla/dwolla-v2-python)
+  * [Dwolla SDK for PHP](https://github.com/Dwolla/dwolla-swagger-php)
   * [Dwolla SDK for Ruby](https://github.com/Dwolla/dwolla-v2-ruby)
 * [Developer Support Forum](https://discuss.dwolla.com/)
 
----

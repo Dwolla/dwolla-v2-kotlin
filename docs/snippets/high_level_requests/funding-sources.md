@@ -1,7 +1,7 @@
-# High-level examples (Funding Sources)
-[`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
+# High-Level Examples (Funding Sources)
+Source Code: [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
 
-## Create a Funding Source for a Customer with On-demand Authorization
+## Create a Funding Source for a Customer with On-Demand Authorization
 
 ```kotlin
 dwolla.fundingSources.createForCustomer(
@@ -32,15 +32,15 @@ dwolla.fundingSources.get(
 )
 ```
 
-## Retrieve the balance of a Dwolla Balance Funding Source
+## Retrieve the Balance of a Dwolla Balance Funding Source
 
 ```kotlin
-dwolla.fundingSources.listByAccount(
+dwolla.fundingSources.getBalance(
   id = "8a2cdc8d-629d-4a24-98ac-40b735229fe2",
 )
 ```
 
-## Retrieve a list of all Funding Sources for an account
+## Retrieve a List of All Funding Sources for an Account
 
 ```kotlin
 dwolla.fundingSources.listByAccount(
@@ -48,7 +48,7 @@ dwolla.fundingSources.listByAccount(
 )
 ```
 
-## Retrieve a list of removed Funding Sources for a Customer
+## Retrieve a List of Removed Funding Sources for a Customer
 
 ```kotlin
 dwolla.fundingSources.listByCustomer(
@@ -77,7 +77,7 @@ dwolla.fundingSources.remove(
 )
 ```
 
-## Initiate Micro-Deposits to an Unverified Funding Sources
+## Initiate Micro-Deposits to an Unverified Funding Source
 
 ```kotlin
 dwolla.fundingSources.initiateMicroDeposits(
@@ -85,7 +85,7 @@ dwolla.fundingSources.initiateMicroDeposits(
 )
 ```
 
-## Retrieve Micro-Deposits details
+## Retrieve Micro-Deposits Details
 
 ```kotlin
 dwolla.fundingSources.getMicroDeposits(

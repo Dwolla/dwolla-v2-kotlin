@@ -1,5 +1,5 @@
-# High-level examples (Beneficial Owners)
-[`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
+# High-Level Examples (Beneficial Owners)
+Source Code: [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
 
 ## Create a Beneficial Owner for a Customer
 
@@ -28,7 +28,7 @@ dwolla.beneficialOwners.get(
 )
 ```
 
-## Retrieve a list of Beneficial Owner for a Customer
+## Retrieve a List of Beneficial Owners for a Customer
 
 ```kotlin
 dwolla.beneficialOwners.listByCustomer(

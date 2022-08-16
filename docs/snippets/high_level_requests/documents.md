@@ -1,5 +1,5 @@
-# High-level examples (Documents)
-[`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
+# High-Level Examples (Documents)
+Source Code: [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
 
 ## Create a Document for a Customer
 
@@ -29,7 +29,7 @@ dwolla.documents.get(
 )
 ```
 
-## Retrieve a list of Documents for a Customer
+## Retrieve a List of Documents for a Customer
 
 ```kotlin
 dwolla.documents.listByCustomer(
@@ -37,7 +37,7 @@ dwolla.documents.listByCustomer(
 )
 ```
 
-## Retrieve a list of Documents for a Beneficial Owner
+## Retrieve a List of Documents for a Beneficial Owner
 
 ```kotlin
 dwolla.documents.listByBeneficialOwner(

@@ -1,5 +1,5 @@
-# High-level examples (Customers) 
-[`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
+# High-Level Examples (Customers) 
+Source Code: [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
 
 ## Retrieve a Customer by ID
 
@@ -7,7 +7,7 @@
 dwolla.customers.get()
 ```
 
-## Retrieve a list of Customers (limit=10, offset=20, search=Jane, status=deactivated)
+## Retrieve a List of Customers (limit=10, offset=20, search=Jane, status=deactivated)
 
 ```kotlin
 dwolla.customers.list(

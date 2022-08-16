@@ -1,7 +1,7 @@
-# High-level examples (Funding Sources Tokens)
-[`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
+# High-Level Examples (Funding Sources Tokens)
+Source Code: [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
 
-## Create a Funding Source for a Customer with On-demand Authorization
+## Create a Funding Source for a Customer with On-Demand Authorization
 
 ```kotlin
 dwolla.fundingSourcesTokens.createForCustomer(
