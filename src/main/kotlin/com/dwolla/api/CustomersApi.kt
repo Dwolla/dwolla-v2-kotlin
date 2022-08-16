@@ -291,6 +291,8 @@ class CustomersApi(private val client: DwollaClient) {
     @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun upgradeToVerifiedPersonal(
         id: String,
+        firstName: String,
+        lastName: String,
         address1: String,
         address2: String? = null,
         city: String,
@@ -299,10 +301,13 @@ class CustomersApi(private val client: DwollaClient) {
         email: String? = null,
         phone: String? = null,
         ipAddress: String? = null,
-        ssn: String
+        ssn: String,
+        dateOfBirth: DateOfBirth
     ): Customer {
 
         return client.post(Customer::class.java, customerUrl(id), JsonBody(
+            "firstName" to firstName,
+            "lastName" to lastName,
             "email" to email,
             "address1" to address1,
             "address2" to address2,
@@ -311,7 +316,8 @@ class CustomersApi(private val client: DwollaClient) {
             "postalCode" to postalCode,
             "phone" to phone,
             "ipAddress" to ipAddress,
-            "ssn" to ssn
+            "ssn" to ssn,
+            "dateOfBirth" to dateOfBirth
         )).body
     }
 
