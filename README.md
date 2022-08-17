@@ -202,7 +202,7 @@ try {
 
 ## Changelog
 
-- **0.6.1**
+- [**0.6.1**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.6.1)
   - Add `firstName`, `lastName` and `dateOfBirth` as required arguments when upgrading an Unverified Customer to a Personal Verified Customer.
 - [**0.6.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.6.0)
   - Add `correlationId` optional argument when creating a new customer
