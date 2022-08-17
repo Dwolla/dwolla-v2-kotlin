@@ -4,7 +4,7 @@ This repository contains the source code for Dwolla's Kotlin-based SDK, which al
 
 **Dwolla’s Kotlin SDK is intended for server-side use and should not be used by itself when developing client-side Android apps. Instead, this SDK should be installed on your web server with your Android app proxying any interaction with Dwolla through it.**
 
-### Table of Contents
+## Table of Contents
 
 - [Getting Started](#getting-started)
   - [Installation](#installation)
