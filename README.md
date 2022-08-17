@@ -1,9 +1,26 @@
-# Dwolla V2 Kotlin
+# Dwolla SDK for Kotlin
 
-Dwolla V2 Kotlin provides a [Dwolla V2 API](https://docs.dwolla.com) client for the **Kotlin** and **Java**
-programming languages.
+This repository contains the source code for Dwolla's Kotlin-based SDK, which allows developers to interact with Dwolla's server-side API via a Kotlin or JAVA API. Any action that can be performed via an HTTP request can be made using this SDK when executed within a server-side environment.
 
-## Installation
+**Dwolla’s Kotlin SDK is intended for server-side use and should not be used by itself when developing client-side Android apps. Instead, this SDK should be installed on your web server with your Android app proxying any interaction with Dwolla through it.**
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Initialization](#initialization)
+- [Making Requests](#making-requests)
+  - [High-Level Requests](#high-level-requests)
+  - [Low-Level Requests](#low-level-requests)
+- [Handling Errors](#handling-errors)
+- [Changelog](#changelog)
+- [Community](#community)
+- [Additional Resources](#additional-resources)
+## Getting Started
+
+### Installation
+
+To begin using this SDK, you will first need to download it to your machine. You can use Maven or Gradle to do so, depending on which build tool your project is using.
 
 #### Maven
 
@@ -22,7 +39,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.6.0</version>
+    <version>0.6.1</version>
 </dependency>
 ```
 
@@ -41,17 +58,18 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.6.0")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.6.1")
 }
 ```
 
-## Getting Started
+### Initialization
 
-Before making requests, you'll need to set up a Dwolla client using your app credentials.
+Before any API requests can be made, you must first determine which environment you will be using, as well as fetch the application key and secret. To fetch your application key and secret, please visit one of the following links:
 
-Your app credentials can be found on the applications page of the Dwolla Dashboard
-([sandbox](https://dashboard-sandbox.dwolla.com/applications),
-[production](https://dashboard.dwolla.com/applications)).
+* Production: https://dashboard.dwolla.com/applications
+* Sandbox: https://dashboard-sandbox.dwolla.com/applications
+
+Finally, you can create an instance of `Dwolla` with `key` and `secret` replaced with the application key and secret that you fetched from one of the aforementioned links, respectively.
 
 #### Kotlin
 
@@ -81,24 +99,9 @@ Dwolla dwolla = new Dwolla(
 
 ## Making Requests
 
-The Dwolla client provides **low-level** and **high-level** methods for interacting with the Dwolla API.
+The Dwolla client provides high-level and low-level methods for interacting with the Dwolla API.
 
-### Low-level methods
-
-The low-level methods `get`, `post`, and `delete` send HTTP requests to the Dwolla API using your app credentials.
-These methods are all you need to use the Dwolla API. You can refer to the [Dwolla API Docs](https://docs.dwolla.com/)
-for information on supported endpoints, request parameters, and response parameters.
-
-- `dwolla.get`
-- `dwolla.post`
-- `dwolla.delete`
-
-Examples:
-
-- [Kotlin](docs/low_level_examples_kotlin.md)
-- [Java](docs/low_level_examples_java.md)
-
-### High-level methods (🚧 Under construction)
+### High-Level Requests
 
 > The best SDKs are not just simple; they’re intuitive. Developers would rather stay in the flow of their code than
 > troubleshoot back-and-forth trying to figure out someone else’s code. Luckily, statically typed languages let us
@@ -111,21 +114,33 @@ you would typically refer to the docs for in the SDK itself such as endpoints, r
 
 As of now, a subset of the Dwolla API has high-level methods available:
 
-- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/AccountsApi.kt)
-- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BeneficialOwnersApi.kt)
-- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/BusinessClassificationsApi.kt)
-- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/CustomersApi.kt)
-- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/DocumentsApi.kt)
-- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesApi.kt)
-- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/FundingSourcesTokensApi.kt)
-- [x] [`dwolla.iavTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/IavTokensApi.kt)
-- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/src/main/kotlin/com/dwolla/api/RootApi.kt)
+- [x] [`dwolla.accounts.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/accounts.md)
+- [x] [`dwolla.beneficialOwners.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/beneficial-owners.md)
+- [x] [`dwolla.businessClassifications.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/business-classifications.md)
+- [x] [`dwolla.customers.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/customers.md)
+- [x] [`dwolla.documents.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/documents.md)
+- [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources.md)
+- [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources-tokens.md)
+- [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/root.md)
 - [ ] `dwolla.events.*`
 - [ ] `dwolla.labels.*`
 - [ ] `dwolla.massPayments.*`
 - [ ] `dwolla.transfers.*`
 - [ ] `dwolla.webhooks.*`
 - [ ] `dwolla.webhookSubscriptions.*`
+
+### Low-Level Requests
+
+To make low-level HTTP requests, you can use the `get()`, `post()`, and `delete()` methods.
+
+- `dwolla.get`
+- `dwolla.post`
+- `dwolla.delete`
+
+Examples:
+
+- [Kotlin](docs/snippets/low_level_requests/low_level_examples_kotlin.md)
+- [Java](docs/snippets/low_level_requests/low_level_examples_java.md)
 
 ## Handling errors
 
@@ -143,7 +158,7 @@ DwollaException
   this exception unless your `Dwolla` key/secret are incorrect.
 - `DwollaException`: The base class other exceptions inherit from.
 
-#### Kotlin
+##### Kotlin
 
 ```kotlin
 try {
@@ -164,7 +179,7 @@ try {
 }
 ```
 
-#### Java
+##### Java
 
 ```java
 try {
@@ -185,25 +200,24 @@ try {
 }
 ```
 
-## Feedback
-
-If you have any feedback please [reach out](https://discuss.dwolla.com/) to us or
-[create an issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues).
-
 ## Changelog
 
-- **0.6.0**
+- **0.6.1**
+  - Add `firstName`, `lastName` and `dateOfBirth` as required arguments when upgrading an Unverified Customer to a Personal Verified Customer.
+- [**0.6.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.6.0)
   - Add `correlationId` optional argument when creating a new customer
   - Add `ForeignPassportNotAllowed` document failure reason. This is thrown when a foreign (non-U.S.) passport is uploaded for a personal Verified Customer.
-- **0.4.0**
+- [**0.5.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.5.0)
+  - Configure Dwolla environment to be more flexible to configuration
+- [**0.4.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.4.0)
   - Updated `src/main/kotlin/com/dwolla/resource/documents/DocumentFailureReason.kt` to match failure reasons in [API Reference](https://developers.dwolla.com/api-reference/documents)
   - Update `gradle` from 5.3.1 to 7.3.1
 - **0.3.0**
   - Updated `CutomerApi` to include SSN when upgrading a customer to verified
-- **0.2.0**
+- [**0.2.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.2.0)
   - Add `DwollaException` base exception class
   - Swallow and rethrow exceptions using `DwollaException`
-- **0.1.2**
+- [**0.1.2**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.1.2)
   - Add `delete` methods to `DwollaClient`
 - **0.1.1**
   - Add serializer for `JsonBody` ([#13](/Dwolla/dwolla-v2-kotlin/pull/13))
@@ -226,3 +240,23 @@ If you have any feedback please [reach out](https://discuss.dwolla.com/) to us o
   - Refactored high-level APIs
 - **0.1.0-pre1**
   - Initial release
+
+## Community
+
+* If you have any feedback, please reach out to us on [our forums](https://discuss.dwolla.com/) or by [creating a GitHub issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues/new).
+* If you would like to contribute to this library, [bug reports](https://github.com/Dwolla/dwolla-v2-kotlin/issues) and [pull requests](https://github.com/Dwolla/dwolla-v2-kotlin/pulls) are always appreciated!
+
+## Additional Resources
+
+To learn more about Dwolla and how to integrate our product with your application, please consider visiting the following resources and becoming a member of our community!
+
+* [Dwolla](https://www.dwolla.com/)
+* [Dwolla Developers](https://developers.dwolla.com/)
+* [SDKs and Tools](https://developers.dwolla.com/sdks-tools)
+  * [Dwolla SDK for C#](https://github.com/Dwolla/dwolla-v2-csharp)
+  * [Dwolla SDK for Node](https://github.com/Dwolla/dwolla-v2-node)
+  * [Dwolla SDK for Python](https://github.com/Dwolla/dwolla-v2-python)
+  * [Dwolla SDK for PHP](https://github.com/Dwolla/dwolla-swagger-php)
+  * [Dwolla SDK for Ruby](https://github.com/Dwolla/dwolla-v2-ruby)
+* [Developer Support Forum](https://discuss.dwolla.com/)
+
