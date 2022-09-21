@@ -39,7 +39,7 @@ dependencies {
     testImplementation("io.mockk:mockk:1.9.3")
 
     testCompile("org.junit.jupiter:junit-jupiter-api:5.5.2")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.9.1")
     testRuntime("org.junit.platform:junit-platform-runner:1.5.2")
 }
 
