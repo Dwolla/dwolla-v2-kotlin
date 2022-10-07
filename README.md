@@ -16,6 +16,7 @@ This repository contains the source code for Dwolla's Kotlin-based SDK, which al
 - [Changelog](#changelog)
 - [Community](#community)
 - [Additional Resources](#additional-resources)
+
 ## Getting Started
 
 ### Installation
@@ -66,8 +67,8 @@ dependencies {
 
 Before any API requests can be made, you must first determine which environment you will be using, as well as fetch the application key and secret. To fetch your application key and secret, please visit one of the following links:
 
-* Production: https://dashboard.dwolla.com/applications
-* Sandbox: https://dashboard-sandbox.dwolla.com/applications
+- Production: https://dashboard.dwolla.com/applications
+- Sandbox: https://dashboard-sandbox.dwolla.com/applications
 
 Finally, you can create an instance of `Dwolla` with `key` and `secret` replaced with the application key and secret that you fetched from one of the aforementioned links, respectively.
 
@@ -243,20 +244,24 @@ try {
 
 ## Community
 
-* If you have any feedback, please reach out to us on [our forums](https://discuss.dwolla.com/) or by [creating a GitHub issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues/new).
-* If you would like to contribute to this library, [bug reports](https://github.com/Dwolla/dwolla-v2-kotlin/issues) and [pull requests](https://github.com/Dwolla/dwolla-v2-kotlin/pulls) are always appreciated!
+- If you have any feedback, please reach out to us on [our forums](https://discuss.dwolla.com/) or by [creating a GitHub issue](https://github.com/Dwolla/dwolla-v2-kotlin/issues/new).
+- If you would like to contribute to this library, [bug reports](https://github.com/Dwolla/dwolla-v2-kotlin/issues) and [pull requests](https://github.com/Dwolla/dwolla-v2-kotlin/pulls) are always appreciated!
+
+## Docker
+
+If you prefer to use Docker to run dwolla-v2-kotlin locally, a Dockerfile is included at the root directory.
+Follow these instructions from [Docker's website](https://docs.docker.com/build/hellobuild/) to create a Docker image from the Dockerfile, and run it.
 
 ## Additional Resources
 
 To learn more about Dwolla and how to integrate our product with your application, please consider visiting the following resources and becoming a member of our community!
 
-* [Dwolla](https://www.dwolla.com/)
-* [Dwolla Developers](https://developers.dwolla.com/)
-* [SDKs and Tools](https://developers.dwolla.com/sdks-tools)
-  * [Dwolla SDK for C#](https://github.com/Dwolla/dwolla-v2-csharp)
-  * [Dwolla SDK for Node](https://github.com/Dwolla/dwolla-v2-node)
-  * [Dwolla SDK for Python](https://github.com/Dwolla/dwolla-v2-python)
-  * [Dwolla SDK for PHP](https://github.com/Dwolla/dwolla-swagger-php)
-  * [Dwolla SDK for Ruby](https://github.com/Dwolla/dwolla-v2-ruby)
-* [Developer Support Forum](https://discuss.dwolla.com/)
-
+- [Dwolla](https://www.dwolla.com/)
+- [Dwolla Developers](https://developers.dwolla.com/)
+- [SDKs and Tools](https://developers.dwolla.com/sdks-tools)
+  - [Dwolla SDK for C#](https://github.com/Dwolla/dwolla-v2-csharp)
+  - [Dwolla SDK for Node](https://github.com/Dwolla/dwolla-v2-node)
+  - [Dwolla SDK for Python](https://github.com/Dwolla/dwolla-v2-python)
+  - [Dwolla SDK for PHP](https://github.com/Dwolla/dwolla-swagger-php)
+  - [Dwolla SDK for Ruby](https://github.com/Dwolla/dwolla-v2-ruby)
+- [Developer Support Forum](https://discuss.dwolla.com/)
