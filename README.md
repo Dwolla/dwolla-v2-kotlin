@@ -15,6 +15,7 @@ This repository contains the source code for Dwolla's Kotlin-based SDK, which al
 - [Handling Errors](#handling-errors)
 - [Changelog](#changelog)
 - [Community](#community)
+- [Docker](#docker)
 - [Additional Resources](#additional-resources)
 
 ## Getting Started
@@ -249,8 +250,24 @@ try {
 
 ## Docker
 
-If you prefer to use Docker to run dwolla-v2-kotlin locally, a Dockerfile is included at the root directory.
-Follow these instructions from [Docker's website](https://docs.docker.com/build/hellobuild/) to create a Docker image from the Dockerfile, and run it.
+If you prefer to use Docker to run dwolla-v2-kotlin locally, a Dockerfile file is included in the root directory. You can either build the Docker image with your API key and secret (by passing the values via CLI), or you can specify the values for the `app_key` and `app_secret` build arguments in Dockerfile. Finally, you will need to build and run the Docker image. More information on this topic can be found on [Docker's website](https://docs.docker.com/build/hellobuild/), or you can find some example commands below.
+
+##### Building Docker Container
+
+```shell
+# Building container by specifying build arguments.
+# In this configuration, you will not need to modify Dockerfile. All of the
+# necessary arguments are passed via Docker's `--build-arg` option.
+$ docker build \
+    --build-arg app_key=YOUR_API_KEY \
+    --build-arg app_secret=YOUR_APP_SECRET \
+    -t dwolla/kotlin:latest .
+    
+# Building container without specifying build arguments.
+# In this configuration, you will need to specify your account API key and 
+# secret (retrieved from Dwolla) in the Dockerfile file.
+$ docker build -t dwolla/kotlin:latest .
+```
 
 ## Additional Resources
 
