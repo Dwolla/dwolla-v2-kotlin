@@ -111,6 +111,9 @@ class CustomersApiTest : ApiTest() {
         assertResponse {
             dwolla.customers.upgradeToVerifiedPersonal(
                 id = unverified.id,
+                firstName = "Jane",
+                lastName = "Doe",
+                dateOfBirth = DateOfBirth("1990", "01", "01"),
                 address1 = "123 main st.",
                 city = "des moines",
                 state = USState.IA,
