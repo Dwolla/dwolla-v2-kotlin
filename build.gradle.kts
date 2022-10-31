@@ -59,7 +59,7 @@ tasks.test {
         if (project.hasProperty("jUnitExcludeTags"))
             excludeTags(project.property("jUnitExcludeTags") as String)
 
-        if(project.hasProperty("jUnitIncludeTags"))
+        if (project.hasProperty("jUnitIncludeTags"))
             includeTags(project.property("jUnitIncludeTags") as String)
     }
 }
