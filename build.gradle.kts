@@ -10,14 +10,10 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 
     maven(url = "https://jitpack.io") {
         name = "jitpack"
-    }
-
-    maven(url = "https://kotlin.bintray.com/kotlinx") {
-        name = "kotlinx"
     }
 }
 
@@ -62,5 +58,8 @@ tasks.test {
     useJUnitPlatform {
         if (project.hasProperty("jUnitExcludeTags"))
             excludeTags(project.property("jUnitExcludeTags") as String)
+
+        if (project.hasProperty("jUnitIncludeTags"))
+            includeTags(project.property("jUnitIncludeTags") as String)
     }
 }
