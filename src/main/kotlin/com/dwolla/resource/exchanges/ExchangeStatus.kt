@@ -13,4 +13,4 @@ enum class ExchangeStatus {
     REMOVED
 }
 
-typealias ExchangePartnerStatus = ExchangeStatus;
+typealias ExchangePartnerStatus = ExchangeStatus
