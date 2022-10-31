@@ -21,6 +21,7 @@ class Dwolla(
     @JvmField val businessClassifications = BusinessClassificationsApi(this)
     @JvmField val customers = CustomersApi(this)
     @JvmField val documents = DocumentsApi(this)
+    @JvmField val exchanges = ExchangesApi(this)
     @JvmField val fundingSources = FundingSourcesApi(this)
     @JvmField val fundingSourcesTokens = FundingSourcesTokensApi(this)
     @JvmField val iavTokens = IavTokensApi(this)
