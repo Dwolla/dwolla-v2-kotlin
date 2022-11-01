@@ -56,6 +56,8 @@ publishing {
 
 tasks.test {
     useJUnitPlatform {
+        environment("JUNIT_TESTS", true)
+
         if (project.hasProperty("jUnitExcludeTags"))
             excludeTags(project.property("jUnitExcludeTags") as String)
 
