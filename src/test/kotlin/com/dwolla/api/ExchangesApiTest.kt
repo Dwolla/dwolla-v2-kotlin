@@ -150,6 +150,8 @@ class ExchangesApiTest : ApiTest() {
                 "total" to 2
             )
         )
+
+        assertParsedResponse { dwolla.exchanges.listByAccount() }
     }
 
     @Test
@@ -182,7 +184,7 @@ class ExchangesApiTest : ApiTest() {
                                 "funding-sources" to JsonBody(
                                     "href" to "https://api-sandbox.dwolla.com/funding-sources",
                                     "type" to "application/vnd.dwolla.v1.hal+json",
-                                    "resource-type" to "funding-sources"
+                                    "resource-type" to "funding-source"
                                 )
                             ),
                             "id" to "92822961-3a7f-42c0-b0cc-7ffef05717fa",
@@ -194,5 +196,11 @@ class ExchangesApiTest : ApiTest() {
                 "total" to 1
             )
         )
+
+        assertParsedResponse {
+            dwolla.exchanges.listByCustomer(
+                customerId = "https://api.dwolla.com/customers/9fc74373-a5c7-40e4-aa59-d5f4c86a24ea/exchanges"
+            )
+        }
     }
 }
