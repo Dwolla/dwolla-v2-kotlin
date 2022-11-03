@@ -3,7 +3,6 @@ package com.dwolla.api
 import com.dwolla.Dwolla
 import com.dwolla.Instances.dwolla
 import com.dwolla.http.JsonBody
-import com.github.kittinunf.fuel.core.Client
 import com.github.kittinunf.fuel.core.Headers
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.fuel.core.requests.DefaultBody
