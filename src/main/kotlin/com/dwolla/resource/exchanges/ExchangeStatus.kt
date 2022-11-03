@@ -12,3 +12,5 @@ enum class ExchangeStatus {
     @SerializedName("removed")
     REMOVED
 }
+
+typealias ExchangePartnerStatus = ExchangeStatus
