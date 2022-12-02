@@ -41,7 +41,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.7.0/version>
+    <version>0.7.1/version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.7.0")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.7.1")
 }
 ```
 
@@ -204,6 +204,8 @@ try {
 
 ## Changelog
 
+- [**0.7.1**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.7.1)
+  - Fix bug where `ExchangePartnersApi` did not have proper `@Throws` annotations
 - [**0.7.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.7.0)
   - Add Exchanges and Exchange Partners high-level API methods
 - [**0.6.1**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.6.1)
