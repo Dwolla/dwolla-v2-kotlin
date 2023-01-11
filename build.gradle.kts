@@ -34,7 +34,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("io.mockk:mockk:1.9.3")
 
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.2")
     testRuntime("org.junit.platform:junit-platform-runner:1.5.2")
 }
