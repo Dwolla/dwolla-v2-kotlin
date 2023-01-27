@@ -6,6 +6,14 @@ import com.google.gson.JsonSerializer
 import java.lang.reflect.Type
 
 class JsonBody {
+    companion object {
+        fun <T> fromEntrySet(entrySet: Set<Map.Entry<String, T>>): JsonBody {
+            val jsonBody = JsonBody()
+            entrySet.forEach { p -> jsonBody.add(p.key, p.value) }
+            return jsonBody
+        }
+    }
+
     internal val map: MutableMap<String, Any> = mutableMapOf()
 
     constructor() {}
