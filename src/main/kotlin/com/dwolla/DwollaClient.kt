@@ -241,6 +241,12 @@ abstract class DwollaClient(@JvmField val environment: Environment) {
     }
 
     @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun <T: Any> delete(deserializeAs: Class<T>, path: String): Response<T> {
+        val url = urlBuilder.buildUrl(path)
+        return makeRequest(deserializeAs, fuelManager.delete(url))
+    }
+
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun delete(path: String): Response<String> {
         val url = urlBuilder.buildUrl(path)
         return makeRequest(fuelManager.delete(url))

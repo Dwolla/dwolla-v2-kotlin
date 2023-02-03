@@ -5,6 +5,7 @@ internal class Paths {
         const val ACCOUNTS = "accounts"
         const val BALANCE = "balance"
         const val BENEFICIAL_OWNERS = "beneficial-owners"
+        const val BENEFICIAL_OWNERSHIP = "beneficial-ownership"
         const val BUSINESS_CLASSIFICATIONS = "business-classifications"
         const val CUSTOMERS = "customers"
         const val DOCUMENTS = "documents"
