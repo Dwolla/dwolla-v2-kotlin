@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class EmbeddedBeneficialOwners(
     @JvmField @SerializedName("beneficial-owners")
-    val beneficialOwners: Array<BeneficialOwner>
+    val beneficialOwners: List<BeneficialOwner>
 )
