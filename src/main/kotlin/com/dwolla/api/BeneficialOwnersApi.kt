@@ -13,6 +13,13 @@ import com.dwolla.util.Paths.Companion.BENEFICIAL_OWNERSHIP
 import com.dwolla.util.Paths.Companion.CUSTOMERS
 
 class BeneficialOwnersApi(private val client: DwollaClient) {
+    fun certifyBeneficialOwnershipForCustomer(customerId: String): BeneficialOwnership {
+        return client.postFollow(
+            BeneficialOwnership::class.java,
+            customerBeneficialOwnershipUrl(customerId)
+        ).body
+    }
+
     fun createForCustomer(
         customerId: String,
         firstName: String,
@@ -33,13 +40,6 @@ class BeneficialOwnersApi(private val client: DwollaClient) {
                 "address" to address,
                 "passport" to passport
             )
-        ).body
-    }
-
-    fun certifyBeneficialOwnershipForCustomer(customerId: String): BeneficialOwnership {
-        return client.postFollow(
-            BeneficialOwnership::class.java,
-            customerBeneficialOwnershipUrl(customerId)
         ).body
     }
 
