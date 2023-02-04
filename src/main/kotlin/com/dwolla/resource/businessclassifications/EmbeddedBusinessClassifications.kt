@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class EmbeddedBusinessClassifications(
     @JvmField @SerializedName("business-classifications")
-    val businessClassifications: Array<BusinessClassification>
+    val businessClassifications: List<BusinessClassification>
 )
