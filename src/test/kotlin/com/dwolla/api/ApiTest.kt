@@ -19,12 +19,22 @@ abstract class ApiTest {
             ._embedded.industryClassifications.first().id
     }
 
-    protected inline fun <reified T : Any> assertParsedResponse(body: () -> T) {
-        val instance = body()
+    protected fun <T : Any> assertParsedResponse(body: () -> T?) {
+        val instance = body() ?: return
+        if (instance::class.qualifiedName?.startsWith("com.dwolla") != true) return
 
-        T::class.memberProperties
+        instance::class.memberProperties
             .filter { !it.returnType.isMarkedNullable }
-            .forEach { assertNotNull(it.get(instance)) }
+            .forEach {
+                val newInstance = it.getter.call(instance)
+                assertNotNull(newInstance)
+
+                when (newInstance) {
+                    is Iterable<*> -> newInstance.forEach { assertParsedResponse { it } }
+                    is Map<*, *> -> newInstance.entries.forEach { assertParsedResponse { it.value } }
+                    else -> assertParsedResponse { newInstance }
+                }
+            }
     }
 
     protected fun <T : Any> assertResponse(body: () -> T): T {
