@@ -69,7 +69,7 @@ class FundingSourcesApi(private val client: DwollaClient) {
     }
 
     @Deprecated(
-        message = "Function split into createBankForCustomer and createPlaidBankForCustomer",
+        message = "Use createBankForCustomer and createPlaidBankForCustomer depending on use case",
         replaceWith = ReplaceWith("createBankForCustomer(customerId, routingNumber, accountNumber, bankAccountType, name, channels, onDemandAuthorizationId, verified, idempotencyKey)")
     )
     @Throws(DwollaApiException::class, DwollaAuthException::class)
@@ -125,9 +125,9 @@ class FundingSourcesApi(private val client: DwollaClient) {
     ): FundingSources {
 
         return client.get(
-                FundingSources::class.java,
-                accountFundingSourcesUrl(accountId),
-                Query("removed" to removed)
+            FundingSources::class.java,
+            accountFundingSourcesUrl(accountId),
+            Query("removed" to removed)
         ).body
     }
 
