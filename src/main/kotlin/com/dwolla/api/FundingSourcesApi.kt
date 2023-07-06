@@ -69,7 +69,7 @@ class FundingSourcesApi(private val client: DwollaClient) {
     }
 
     @Deprecated(
-        message = "Use createBankForCustomer and createPlaidBankForCustomer depending on use case",
+        message = "Use createBankForCustomer or createPlaidBankForCustomer depending on use case",
         replaceWith = ReplaceWith("createBankForCustomer(customerId, routingNumber, accountNumber, bankAccountType, name, channels, onDemandAuthorizationId, verified, idempotencyKey)")
     )
     @Throws(DwollaApiException::class, DwollaAuthException::class)
