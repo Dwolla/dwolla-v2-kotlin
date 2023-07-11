@@ -18,7 +18,60 @@ import com.dwolla.util.Paths.Companion.FUNDING_SOURCES
 import com.dwolla.util.Paths.Companion.ON_DEMAND_AUTHORIZATIONS
 
 class FundingSourcesApi(private val client: DwollaClient) {
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun createBankForCustomer(
+        customerId: String,
+        routingNumber: String,
+        accountNumber: String,
+        bankAccountType: BankAccountType,
+        name: String,
+        channels: List<FundingSourceChannel>? = null,
+        onDemandAuthorizationId: String? = null,
+        verified: Boolean? = null,
+        idempotencyKey: String? = null
+    ): FundingSource {
+        return client.postFollow(
+            FundingSource::class.java,
+            customerFundingSourcesUrl(customerId),
+            JsonBody(
+                "_links" to maybeCreateFsLinks(onDemandAuthorizationId),
+                "routingNumber" to routingNumber,
+                "accountNumber" to accountNumber,
+                "bankAccountType" to bankAccountType,
+                "name" to name,
+                "channels" to channels,
+                "verified" to verified
+            ),
+            Headers(IDEMPOTENCY_KEY to idempotencyKey)
+        ).body
+    }
 
+    @Throws(DwollaApiException::class, DwollaAuthException::class)
+    fun createPlaidBankForCustomer(
+        customerId: String,
+        name: String,
+        plaidToken: String,
+        channels: List<FundingSourceChannel>? = null,
+        onDemandAuthorizationId: String? = null,
+        idempotencyKey: String? = null
+    ): FundingSource {
+        return client.postFollow(
+            FundingSource::class.java,
+            customerFundingSourcesUrl(customerId),
+            JsonBody(
+                "_links" to maybeCreateFsLinks(onDemandAuthorizationId),
+                "name" to name,
+                "plaidToken" to plaidToken,
+                "channels" to channels
+            ),
+            Headers(IDEMPOTENCY_KEY to idempotencyKey)
+        ).body
+    }
+
+    @Deprecated(
+        message = "Use createBankForCustomer or createPlaidBankForCustomer depending on use case",
+        replaceWith = ReplaceWith("createBankForCustomer(customerId, routingNumber, accountNumber, bankAccountType, name, channels, onDemandAuthorizationId, verified, idempotencyKey)")
+    )
     @Throws(DwollaApiException::class, DwollaAuthException::class)
     fun createForCustomer(
         customerId: String,
@@ -72,9 +125,9 @@ class FundingSourcesApi(private val client: DwollaClient) {
     ): FundingSources {
 
         return client.get(
-                FundingSources::class.java,
-                accountFundingSourcesUrl(accountId),
-                Query("removed" to removed)
+            FundingSources::class.java,
+            accountFundingSourcesUrl(accountId),
+            Query("removed" to removed)
         ).body
     }
 
