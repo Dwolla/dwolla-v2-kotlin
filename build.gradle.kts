@@ -23,7 +23,7 @@ dependencies {
 
     // Fuel HTTP client
     implementation(group = "com.github.kittinunf.fuel", name = "fuel", version = "2.2.1")
-    implementation(group = "com.github.kittinunf.fuel", name = "fuel-coroutines", version = "2.2.1")
+    implementation(group = "com.github.kittinunf.fuel", name = "fuel-coroutines", version = "2.3.1")
 
     // GSON
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
