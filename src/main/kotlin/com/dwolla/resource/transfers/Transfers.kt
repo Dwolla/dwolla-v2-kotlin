@@ -2,7 +2,6 @@ package com.dwolla.resource.transfers
 
 import com.dwolla.resource.HalResource
 import com.dwolla.resource.Links
-import com.dwolla.resource.fundingsources.EmbeddedFundingSources
 
 data class Transfers(
     @JvmField val _links: Links,
@@ -13,3 +12,8 @@ data class Transfers(
         return _links
     }
 }
+
+data class EmbeddedTransfers(
+    @JvmField val transfers: List<Transfer>
+)
+

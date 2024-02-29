@@ -1,16 +1,17 @@
 package com.dwolla.api
 
 import com.dwolla.DwollaClient
-import com.dwolla.api.transfers.AchDetails
-import com.dwolla.api.transfers.Clearing
-import com.dwolla.api.transfers.Fee
+import com.dwolla.api.transfers.*
 import com.dwolla.exception.DwollaApiException
 import com.dwolla.exception.DwollaAuthException
 import com.dwolla.http.Headers
 import com.dwolla.http.JsonBody
 import com.dwolla.http.Query
 import com.dwolla.resource.fundingsources.FundingSource
-import com.dwolla.resource.transfers.* // ktlint-disable no-wildcard-imports
+import com.dwolla.resource.transfers.FacilitatorFees
+import com.dwolla.resource.transfers.FailureReason
+import com.dwolla.resource.transfers.Transfer
+import com.dwolla.resource.transfers.Transfers
 import com.dwolla.shared.Amount
 import com.dwolla.util.Keys.IDEMPOTENCY_KEY
 import com.dwolla.util.Keys.SELF
@@ -35,7 +36,7 @@ class TransfersApi(@JvmField val client: DwollaClient) {
         rtpDetails: RtpDetails? = null,
         correlationId: String? = null,
         processingChannel: ProcessingChannel? = null,
-        idempotencyKey: String
+        idempotencyKey: String? = null
     ): Transfer {
         return create(
             sourceFundingSourceId = sourceFundingSource.getHref(SELF),
@@ -64,7 +65,7 @@ class TransfersApi(@JvmField val client: DwollaClient) {
         rtpDetails: RtpDetails? = null,
         correlationId: String? = null,
         processingChannel: ProcessingChannel? = null,
-        idempotencyKey: String
+        idempotencyKey: String? = null
     ): Transfer {
         return create(
             sourceFundingSourceId = sourceFundingSource.getHref(SELF),
@@ -93,7 +94,7 @@ class TransfersApi(@JvmField val client: DwollaClient) {
         rtpDetails: RtpDetails? = null,
         correlationId: String? = null,
         processingChannel: ProcessingChannel? = null,
-        idempotencyKey: String
+        idempotencyKey: String? = null
     ): Transfer {
         return create(
             sourceFundingSourceId = sourceFundingSourceId,
@@ -122,8 +123,12 @@ class TransfersApi(@JvmField val client: DwollaClient) {
         rtpDetails: RtpDetails? = null,
         correlationId: String? = null,
         processingChannel: ProcessingChannel? = null,
-        idempotencyKey: String
+        idempotencyKey: String? = null
     ): Transfer {
+        val updatedFees = fees?.map {
+            buildChargeToUrlForFee(it.chargeTo, it.amount)
+        }?.toTypedArray()
+
         return client.postFollow(
             Transfer::class.java,
             TRANSFERS,
@@ -134,7 +139,7 @@ class TransfersApi(@JvmField val client: DwollaClient) {
                 ),
                 "amount" to amount,
                 "metadata" to metadata,
-                "fees" to fees,
+                "fees" to updatedFees,
                 "clearing" to clearing,
                 "achDetails" to achDetails,
                 "rtpDetails" to rtpDetails,
@@ -258,6 +263,11 @@ class TransfersApi(@JvmField val client: DwollaClient) {
     }
     private fun transferFailureUrl(id: String): String {
         return client.urlBuilder.buildUrl(TRANSFERS, id, Paths.FAILURE)
+    }
+
+    private fun buildChargeToUrlForFee(customerId: String, amount: Amount): Fee {
+        val customerUrl = client.urlBuilder.buildUrl(CUSTOMERS, customerId)
+        return Fee(customerUrl, amount)
     }
 
 }
