@@ -2,7 +2,7 @@ package com.dwolla.api.transfers
 
 import com.google.gson.annotations.SerializedName
 
-internal enum class ClearingType(@JvmField val value: String) {
+enum class ClearingType(@JvmField val value: String) {
     @SerializedName("standard")
     STANDARD("standard"),
 
