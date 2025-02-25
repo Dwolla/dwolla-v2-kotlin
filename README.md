@@ -41,7 +41,7 @@ Add this to your project's POM:
 <dependency>
     <groupId>com.github.Dwolla</groupId>
     <artifactId>dwolla-v2-kotlin</artifactId>
-    <version>0.7.1/version>
+    <version>0.8.0/version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ repositories {
 
 ```groovy
 dependencies {
-    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.7.1")
+    implementation("com.github.Dwolla:dwolla-v2-kotlin:0.8.0")
 }
 ```
 
@@ -124,6 +124,7 @@ As of now, a subset of the Dwolla API has high-level methods available:
 - [x] [`dwolla.fundingSources.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources.md)
 - [x] [`dwolla.fundingSourcesTokens.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/funding-sources-tokens.md)
 - [x] [`dwolla.root.*`](https://github.com/Dwolla/dwolla-v2-kotlin/blob/main/docs/snippets/high_level_requests/root.md)
+- [x] [`dwolla.transfers.*`]()
 - [ ] `dwolla.events.*`
 - [ ] `dwolla.labels.*`
 - [ ] `dwolla.massPayments.*`
@@ -204,6 +205,9 @@ try {
 
 ## Changelog
 
+- [**0.8.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.8.0)
+  - Add Transfers high-level API methods
+  - `dwolla.transfers.*`
 - [**0.7.1**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.7.1)
   - Fix bug where `ExchangePartnersApi` did not have proper `@Throws` annotations
 - [**0.7.0**](https://github.com/Dwolla/dwolla-v2-kotlin/releases/tag/0.7.0)

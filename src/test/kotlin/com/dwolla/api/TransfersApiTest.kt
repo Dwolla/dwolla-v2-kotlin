@@ -373,14 +373,14 @@ class TransfersApiTest : ApiTest() {
             destinationFundingSourceId = "eb4e32de-eef2-496c-a6e0-5be8596b2096",
             amount = Amount(value = "10.00"),
             fees = arrayOf(Fee(chargeTo = "70088704-f2f1-443e-bd41-f20305d6c912", amount = Amount(value = "1.00"))),
-            clearing = Clearing(destination = ClearingType.NEXT_AVAILABLE),
+            clearing = Clearing(destination = DestinationClearingType.NEXT_AVAILABLE),
             processingChannel = ProcessingChannel(destination = ProcessingChannelType.REAL_TIME_PAYMENTS),
             rtpDetails = RtpDetails(destination = RtpDetail(remittanceData = "ABC_123 Remittance Data")),
             achDetails = AchDetails(
                 source = AchDetail(Addenda(values = arrayOf("ABC123_AddendaValue"))),
                 destination = AchDetail(Addenda(values = arrayOf("ABC123_AddendaValue")))
             ),
-            correlationId = "ABC123_CorreationId",
+            correlationId = "ABC123_CorrelationId",
             idempotencyKey = "ABC123_IdempotencyKey"
         )
     }
